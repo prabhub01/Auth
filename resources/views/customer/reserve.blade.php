@@ -11,7 +11,6 @@
         </div> <br/>
     </div>
 </div>
-
 @if ($errors->any())
     <div class="alert alert-danger">
         <strong>Whoops!</strong> There were some problems with your input.<br> <br>
@@ -54,7 +53,6 @@
                 <strong>Seats:</strong>
                 <input type="number" name="seats" class="form-control" placeholder="Seats Required">
     </div>
-
                 <!-- hidden field to store values only -->
                 <input type="hidden" name="bus_id" class="form-control" value="{{ $data->bus_id }}">
                 <input type="hidden" name="route_id" class="form-control" value="{{ $data->id }}">

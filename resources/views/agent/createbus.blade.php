@@ -29,7 +29,7 @@
     </div>
 @endif
 
-<form action="submit" method="POST">
+<form action="addbus-submit" method="POST">
     @csrf
   
      <div class="row col-xs-12 col-sm-12 col-md-12" style="margin-top:20px;">

@@ -11,7 +11,6 @@
                  <!-- <a class="btn btn-success" href="{{url('login')}}"> Agent Login</a> -->
                  <a href="{{ route('login') }}" class="text-sm text-gray-700 underline"> Agent Login</a> ||
                  <a href="{{ route('register') }}" class="text-sm text-gray-700 underline"> Agent Register</a>
-
              </div>
          </div>
      </div>

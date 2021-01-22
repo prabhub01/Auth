@@ -23,7 +23,7 @@
     </div>
 @endif
 
-<form action="submitdata" method="POST">
+<form action="addroute-submit" method="POST">
     @csrf
   
      <div class="row col-xs-12 col-sm-12 col-md-12" style="margin-top:20px;">
@@ -45,7 +45,7 @@
                 <strong>Select Bus:</strong>
                 <select name="bus_id" class="form-control">
                 @foreach ($data as $bus_id)
-                    <option value="{{ $bus_id->reg_num }}">{{ $bus_id->reg_num }}</option>
+                    <option value="{{ $bus_id->id }}">{{ $bus_id->reg_num }}</option>
                 @endforeach
                 </select>
             </div>

@@ -55,7 +55,7 @@
             </div>
     </div>
         <tr>
-            <th>S.N.</th>
+            <th>I.D.</th>
             <th>Bus Type</th>
             <th>Bus Number</th>
             <th>Seat Capacity</th>
@@ -67,14 +67,9 @@
             <td>{{ $bus->type }}</td>
             <td>{{ $bus->reg_num }}</td>
             <td>{{ $bus->seat_capacity }}</td>
-
             <td>
-                <form action="{{ route('deletebus', $bus->id) }}" method="get">
                     <a class="btn btn-primary" href="{{ route('editbus',$bus->id) }}">Edit</a>
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
+                    <button class="btn btn-danger remove-bus" data-id="{{ $bus->id }}" data-action="{{ route('deletebus', $bus->id) }}">Delete</button>
             </td>
         </tr>
         @endforeach
@@ -90,12 +85,12 @@
             </div>
     </div>
         <tr>
-            <th>S.N.</th>
+            <th>I.D.</th>
             <th>Route Name</th>
             <th>From</th>
             <th>To</th>
             <th>Price</th>
-            <th>Bus Number</th>
+            <th>Bus ID</th>
             <th width="280px">Action</th>
         </tr>
     @foreach($route as $info)
@@ -108,22 +103,12 @@
             <td>{{ $info->bus_id }}</td>
           
             <td>
-                <form action="{{ route('deleteroute', $info->id) }}" method="get">
                     <a class="btn btn-primary" href="{{ route('editroute', $info->id) }}">Edit</a>
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
+                    <button class="btn btn-danger remove-route" data-id="{{ $info->id }}" data-action="{{ route('deleteroute', $info->id) }}">Delete</button>
             </td>
         </tr>
         @endforeach
     </table>
-
-
-
-
-
-
 
 </div>
 @endsection
