@@ -16,7 +16,11 @@ class CustomerController extends Controller
     public function index($id)
     {
         $details = Route::findOrFail($id);
-        return view('customer.reserve',['data'=>$details]);
+        // return view('customer.reserve',['data'=>$details]);
+
+        //fetching all data from Bus Table 
+        $bus= Bus::get(); 
+        return view('customer.reserve',['data'=>$details, 'bus'=>$bus]);
     }
 
     /**

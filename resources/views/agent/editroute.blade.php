@@ -51,7 +51,7 @@
                 <strong>Select Bus:</strong>
                 <select name="bus_id" class="form-control">
                 @foreach ($data as $bus_id)
-                <option value="{{ $bus_id->id }}">{{ $bus_id->id }}</option>
+                <option value="{{ $bus_id->id }}">{{ $bus_id->reg_num }}</option>
                     @endforeach
                 </select>
             </div>

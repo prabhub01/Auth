@@ -43,27 +43,23 @@
      <div class="row col-xs-12 col-sm-12 col-md-12" style="margin-top:20px;">
      <div class="form-group col-md-6">
                 <strong>Your Name:</strong>
-                <input type="text" name="cus_name" class="form-control" placeholder="Your Full Name">
+                <input type="text" name="cus_name" value="{{ old('cus_name') }}" class="form-control" placeholder="Your Full Name">
     </div>
     <div class="form-group col-md-6">
                 <strong>Your Phone Num:</strong>
-                <input type="number" name="cus_phone" class="form-control" placeholder="Your Contact Number">
+                <input type="number" name="cus_phone" value="{{ old('cus_phone') }}" class="form-control" placeholder="Your Contact Number">
     </div>
     <div class="form-group col-md-3">
                 <strong>Seats:</strong>
-                <input type="number" name="seats" class="form-control" placeholder="Seats Required">
+                <input type="number" name="seats" value="{{ old('seats') }}" class="form-control" placeholder="Seats Required">
     </div>
                 <!-- hidden field to store values only -->
                 <input type="hidden" name="bus_id" class="form-control" value="{{ $data->bus_id }}">
                 <input type="hidden" name="route_id" class="form-control" value="{{ $data->id }}">
 
     <div class="form-group col-md-3">
-                <strong>Price:</strong>
-                <input type="number" name="price" class="form-control" value="{{ $data->price }}" readonly>
-    </div>
-    <div class="form-group col-md-3">
                 <strong>Date:</strong>
-                <input type="date" name="date" class="form-control">
+                <input type="date" min="{{ date('Y-m-d') }}" name="date" class="form-control">
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Book Now</button>
