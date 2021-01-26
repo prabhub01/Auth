@@ -27,6 +27,8 @@
                     @auth
                         <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
                     @else
+                    <a href="{{ route('index') }}" class="text-sm text-gray-700 underline"> Booking Here</a> &nbsp;&nbsp;&nbsp;
+        
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 underline"> Agent Login</a>
 
                         @if (Route::has('register'))
