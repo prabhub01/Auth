@@ -29,7 +29,8 @@
         @foreach ($info as $val)
         <tr>
             <td>{{ $val->date }}</td>
-            <td>{{ $val->route->name }}</td>
+            <td>{{ $val->route->name }}</td>  
+            <!-- route is the function name of the relationship written in model -->
             <td>{{ $val->cus_name }}</td>
 
             <td>
@@ -90,7 +91,7 @@
             <th>From</th>
             <th>To</th>
             <th>Price</th>
-            <th>Bus ID</th>
+            <th>Bus Number</th>
             <th width="280px">Action</th>
         </tr>
     @foreach($route as $info)
@@ -100,7 +101,7 @@
             <td>{{ $info->start_from }}</td>
             <td>{{ $info->final_destination }}</td>
             <td>Rs {{ $info->price }}</td>
-            <td>{{ $info->bus_id }}</td>
+            <td>{{ $info->bus->reg_num }}</td>
           
             <td>
                     <a class="btn btn-primary" href="{{ route('editroute', $info->id) }}">Edit</a>

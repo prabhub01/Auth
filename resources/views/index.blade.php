@@ -44,7 +44,7 @@
             <td>{{ $info->start_from }}</td>
             <td>{{ $info->final_destination }}</td>
             <td>Rs {{ $info->price }}</td>
-            <td>{{ $info->bus_id }}</td>
+            <td>{{ $info->bus->reg_num }}</td>
           
             <td>
                 <form action="" method="POST">
