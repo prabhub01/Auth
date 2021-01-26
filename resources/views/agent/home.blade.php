@@ -94,18 +94,18 @@
             <th>Bus Number</th>
             <th width="280px">Action</th>
         </tr>
-    @foreach($route as $info)
+    @foreach($route as $in)
         <tr>
-            <td>{{ $info->id }}</td>
-            <td>{{ $info->name }}</td>
-            <td>{{ $info->start_from }}</td>
-            <td>{{ $info->final_destination }}</td>
-            <td>Rs {{ $info->price }}</td>
-            <td>{{ $info->bus->reg_num }}</td>
+            <td>{{ $in->id }}</td>
+            <td>{{ $in->name }}</td>
+            <td>{{ $in->start_from }}</td>
+            <td>{{ $in->final_destination }}</td>
+            <td>Rs {{ $in->price }}</td>
+            <td>{{ $in->bus->reg_num }}</td>
           
             <td>
-                    <a class="btn btn-primary" href="{{ route('editroute', $info->id) }}">Edit</a>
-                    <button class="btn btn-danger remove-route" data-id="{{ $info->id }}" data-action="{{ route('deleteroute', $info->id) }}">Delete</button>
+                    <a class="btn btn-primary" href="{{ route('editroute', $in->id) }}">Edit</a>
+                    <button class="btn btn-danger remove-route" data-id="{{ $in->id }}" data-action="{{ route('deleteroute', $in->id) }}">Delete</button>
             </td>
         </tr>
         @endforeach

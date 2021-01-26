@@ -33,11 +33,11 @@
             <th>Bus Number</th>
         </tr>
         <tr>
-            <td>{{ $data->name }}</td>
-            <td>{{ $data->start_from }}</td>
-            <td>{{ $data->final_destination }}</td>
-            <td>{{ $data->price }}</td>
-            <td>{{ $data->bus->reg_num }}</td>
+            <td>{{ $details->name }}</td>
+            <td>{{ $details->start_from }}</td>
+            <td>{{ $details->final_destination }}</td>
+            <td>{{ $details->price }}</td>
+            <td>{{ $details->bus->reg_num }}</td>
          </tr>
      </table>
      <div class="row col-xs-12 col-sm-12 col-md-12" style="margin-top:20px;">
@@ -54,9 +54,9 @@
                 <input type="number" name="seats" value="{{ old('seats') }}" class="form-control" placeholder="Seats Required">
     </div>
                 <!-- hidden field to store values only -->
-                <input type="hidden" name="bus_id" class="form-control" value="{{ $data->bus_id }}">
-                <input type="hidden" name="route_id" class="form-control" value="{{ $data->id }}">
-                <input type="hidden" name="price" class="form-control" value="{{ $data->price }}">
+                <input type="hidden" name="bus_id" class="form-control" value="{{ $details->bus_id }}">
+                <input type="hidden" name="route_id" class="form-control" value="{{ $details->id }}">
+                <input type="hidden" name="price" class="form-control" value="{{ $details->price }}">
 
 
     <div class="form-group col-md-3">

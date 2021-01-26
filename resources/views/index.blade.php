@@ -37,7 +37,7 @@
             <th>Bus Number</th>
             <th width="280px">Action</th>
         </tr>
-    @foreach($data as $info)
+    @foreach($value as $info)
         <tr>
             <td>{{ $info->id }}</td>
             <td>{{ $info->name }}</td>
@@ -45,7 +45,7 @@
             <td>{{ $info->final_destination }}</td>
             <td>Rs {{ $info->price }}</td>
             <td>{{ $info->bus->reg_num }}</td>
-          
+
             <td>
                 <form action="" method="POST">
                     <a class="btn btn-primary" href="{{ route('book', $info->id) }}">Book a Ticket</a>

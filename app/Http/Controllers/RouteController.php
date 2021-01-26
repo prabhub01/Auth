@@ -61,7 +61,7 @@ class RouteController extends Controller
     public function show()
     {
         $value=Route::all();
-        return view('index',['data'=>$value]);
+        return view('index', compact('value'));
     }
 
     /**

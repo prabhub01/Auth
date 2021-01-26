@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('welcome');
 });
 
 Auth::routes();
@@ -23,7 +23,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/home', [App\Http\Controllers\AgentController::class, 'show'])->name('home');
 
 //Displaying available bus routes in index page
-Route::get('/', [App\Http\Controllers\RouteController::class, 'show'])->name('index');
+Route::get('/index', [App\Http\Controllers\RouteController::class, 'show'])->name('index');
 
 //CRUD of Bus 
 Route::get('/addbus', [App\Http\Controllers\BusController::class, 'create'])->name('addbus');

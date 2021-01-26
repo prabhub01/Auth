@@ -50,10 +50,15 @@
             <div class="form-group col-md-6">
                 <strong>Select Bus:</strong>
                 <select name="bus_id" class="form-control">
-                @foreach ($data as $bus_id)
-                <option value="{{ $bus_id->id }}">{{ $bus_id->reg_num }}</option>
-                    @endforeach
+               
+                <option value="{{ $info->bus->id }}"> {{ $info->bus->reg_num }} </option>
+                <option disabled></option>
+                @foreach ($data as $bus)
+                <option value="{{ $bus->id }}"> {{ $bus->reg_num }} </option>
+
+                @endforeach
                 </select>
+
             </div>
             <div class="form-group col-md-6">
                 <strong>Price:</strong>

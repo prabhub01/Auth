@@ -13,6 +13,6 @@ class Route extends Model
     ];
     
     function bus(){
-        return $this->belongsTo(Bus::Class, 'bus_id');
+        return $this->belongsTo(Bus::Class,'bus_id');
     }
 }
