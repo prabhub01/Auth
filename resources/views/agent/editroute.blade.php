@@ -50,12 +50,8 @@
             <div class="form-group col-md-6">
                 <strong>Select Bus:</strong>
                 <select name="bus_id" class="form-control">
-               
-                <option value="{{ $info->bus->id }}"> {{ $info->bus->reg_num }} </option>
-                <option disabled></option>
                 @foreach ($data as $bus)
-                <option value="{{ $bus->id }}"> {{ $bus->reg_num }} </option>
-
+                <option value="{{ $bus->id }}" {{ $bus->id == $info->bus->id ? 'selected':''}}> {{ $bus->reg_num }} </option>
                 @endforeach
                 </select>
 

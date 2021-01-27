@@ -19,9 +19,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    
+    <!-- JQUERY cdn link -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
  <!-- Sweet Alert Message -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
@@ -148,8 +151,46 @@ $("body").on("click",".remove-route",function(){
         }
     });
 });
+
+//Depended Dropdown for State and District
+$(document).ready(function() {
+        $('#state').on('change', function() {
+            var stateID = $(this).val();
+            if(stateID) {
+                $.ajax({
+                    url: '/find-disctrict/'+stateID,
+                    type: "GET",
+                    data : {"_token":"{{ csrf_token() }}"},
+                    dataType: "json",
+                    success:function(data) {
+                        //console.log(data);
+                      if(data){
+                        $('#district').empty();
+                        $('#district').focus;
+                        $('#district').append('<option value="">-- Select District --</option>'); 
+                        $.each(data, function(key, value){
+                        $('select[name="final_destination"]').append('<option value="'+ value.district_name +'">' + value.district_name+ '</option>');
+                    });
+                  }else{
+                    $('#district').empty();
+                  }
+                  }
+                });
+            }else{
+              $('#district').empty();
+            }
+        });
+    });
+
+//Calculate total price of booking
+function calculate() {
+		var myBox1 = document.getElementById('price').value;	
+		var myBox2 = document.getElementById('seats').value;
+		var result = document.getElementById('total');	
+		var myResult = myBox1 * myBox2;
+		total.value = myResult;		
+	}
+
 </script>
-
-
 </body>
 </html>

@@ -66,7 +66,8 @@ class BusController extends Controller
     public function edit($id)
     {
         $details = Bus::findOrFail($id);
-        return view('agent.editbus', compact('details'));
+        $data= Bus::all();
+        return view('agent.editbus', ['details'=>$details, 'data'=>$data]);
     }
 
     /**

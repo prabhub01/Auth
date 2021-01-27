@@ -36,6 +36,7 @@
             <div class="form-group col-md-6">
                 <strong>Bus Type:</strong>
                 <select class="form-control" name="type">
+                <option value="" disabled selected>--Select One--</option>
                 <option value="Deluxe">Deluxe</option>
                 <option value="Semi-Deluxe">Semi-Deluxe</option>
                 <option value="Full AC">Full AC</option>

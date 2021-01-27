@@ -53,7 +53,11 @@
             <td>{{ $info->seats}}</td>
         </tr>
         <tr>
-            <th>Price per Seat</th>
+            <th>Price Per Seat</th>
+            <td>Rs. {{ $info->route->price }}</td>
+        </tr>
+        <tr>
+            <th>Total Price</th>
             <td>Rs. {{ $info->price }}</td>
         </tr>
      </table>

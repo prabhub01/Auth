@@ -38,13 +38,14 @@ Route::post('/addroute-submit', [App\Http\Controllers\RouteController::class, 's
 Route::get('/editroute/{id}', [App\Http\Controllers\RouteController::class, 'edit'])->name('editroute');
 Route::post('/updateroute/{id}', [App\Http\Controllers\RouteController::class, 'update'])->name('updateroute');
 Route::get('/deleteroute/{id}', [App\Http\Controllers\RouteController::class, 'destroy'])->name('deleteroute');
+Route::get('/find-disctrict/{id}', [App\Http\Controllers\RouteController::class, 'findDisWithStateID'])->name('find-disctrict');
+
 
 //Reservation
 Route::get('/book/{id}', [App\Http\Controllers\CustomerController::class, 'index'])->name('book');
 Route::post('/booknow', [App\Http\Controllers\CustomerController::class, 'store'])->name('booknow');
 Route::get('/morebooking/{id}', [App\Http\Controllers\AgentController::class, 'booking'])->name('morebooking');
 Route::get('/confirmbooking/{id}', [App\Http\Controllers\AgentController::class, 'confirm'])->name('confirmbooking');
-
 
 
 

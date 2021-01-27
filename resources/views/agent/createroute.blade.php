@@ -27,21 +27,12 @@
     @csrf
   
      <div class="row col-xs-12 col-sm-12 col-md-12" style="margin-top:20px;">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <strong>Route Name:</strong>
                 <input type="text" name="name" class="form-control" placeholder="Name of the route">
-                
-            </div>
-            <div class="form-group col-md-6">
-                <strong>From:</strong>
-                <input type="text" name="start_from" class="form-control" placeholder="Start Point">
-            </div>
-            <div class="form-group col-md-6">
-                <strong>To:</strong>
-                <input type="text" name="final_destination" class="form-control" placeholder="End Point">
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <strong>Select Bus:</strong>
                 <select name="bus_id" class="form-control">
                 @foreach ($data as $bus_id)
@@ -49,12 +40,34 @@
                 @endforeach
                 </select>
             </div>
-            
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <strong>Price:</strong>
                 <input type="number" name="price" class="form-control">
             </div>
+
+            <div class="form-group col-md-4">
+                <strong>Startig From:</strong>
+                <input type="text" name="start_from" class="form-control" placeholder="Kathmandu">
+            </div>
+
+            <div class="form-group col-md-4">
+                <strong>Destination Provience:</strong>
+                <select class="form-control" id="state">
+                <option selected disabled>--Select State--</option>
+                @foreach ($states as $state)
+				    		<option value="{{ $state->id }}">{{ $state->state_name }}</option>
+				    	@endforeach
+                </select>
+            </div>
+
+            <div class="form-group col-md-4">
+                <strong>Destination District:</strong>
+                <select class="form-control" name="final_destination" id="district">
+                   
+                </select>
+            </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
         </div>

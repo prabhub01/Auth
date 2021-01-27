@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Route;
 use App\Models\Bus;
+use App\Models\State;
+use App\Models\District;
+
 
 class RouteController extends Controller
 {
@@ -27,8 +30,8 @@ class RouteController extends Controller
     {
          //fetching all data from the table bus
          $data= Bus::get(); 
-
-         return view('agent.createroute', compact('data'));
+         $states = State::all();
+         return view('agent.createroute', compact('data','states'));
     }
 
     /**
@@ -60,7 +63,7 @@ class RouteController extends Controller
      */
     public function show()
     {
-        $value=Route::all();
+        $value = Route::all();
         return view('index', compact('value'));
     }
 
@@ -119,5 +122,11 @@ class RouteController extends Controller
         $route->destroy($id);
         return redirect()->route('home')
                         ->with('success','Route deleted successfully');
+    }
+
+    public function findDisWithStateID($id)
+    {
+        $district = District::where('state_id',$id)->get();
+        return response()->json($district);
     }
 }

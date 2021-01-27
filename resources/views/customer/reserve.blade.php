@@ -51,14 +51,17 @@
     </div>
     <div class="form-group col-md-3">
                 <strong>Seats:</strong>
-                <input type="number" name="seats" value="{{ old('seats') }}" class="form-control" placeholder="Seats Required">
+                <input type="hidden" id="price" class="form-control" value="{{ $details->price }}" placeholder="Enter Price">
+                <input type="number" id="seats" name="seats" oninput="calculate()" value="{{ old('seats') }}" class="form-control" placeholder="Seats Required">
+    </div>
+    <div class="form-group col-md-3">
+                <strong>Total Price:</strong>
+                <input type="number" id="total" name="price" value="{{ old('price') }}" class="form-control" readonly>
     </div>
                 <!-- hidden field to store values only -->
                 <input type="hidden" name="bus_id" class="form-control" value="{{ $details->bus_id }}">
                 <input type="hidden" name="route_id" class="form-control" value="{{ $details->id }}">
-                <input type="hidden" name="price" class="form-control" value="{{ $details->price }}">
-
-
+             
     <div class="form-group col-md-3">
                 <strong>Date:</strong>
                 <input type="date" min="{{ date('Y-m-d') }}" name="date" class="form-control">

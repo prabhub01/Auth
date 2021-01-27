@@ -35,12 +35,17 @@
      <div class="row col-xs-12 col-sm-12 col-md-12" style="margin-top:20px;">
             <div class="form-group col-md-6">
                 <strong>Bus Type:</strong>
-                <select class="form-control" name="type">
+                <select name="type" class="form-control">
+                @foreach($data as $bus_name) 
+                <option value="{{ $bus_name->type }}" {{ $bus_name->id == $details->id ? 'selected':''  }}> {{ $bus_name->type }} </option>
+                @endforeach
+                </select>
+                <!-- <select class="form-control" name="type">
                 <option value="{{ $details->type }}"> {{ $details->type }} </option>
                 <option value="Deluxe">Deluxe</option>
                 <option value="Semi-Deluxe">Semi-Deluxe</option>
                 <option value="Full AC">Full AC</option>
-                </select>
+                </select> -->
             </div>
             <div class="form-group col-md-6">
                 <strong>Registration Number:</strong>
