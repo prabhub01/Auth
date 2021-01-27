@@ -63,7 +63,7 @@ class RouteController extends Controller
      */
     public function show()
     {
-        $value = Route::all();
+        $value = Route::with('bus')->get();
         return view('index', compact('value'));
     }
 
