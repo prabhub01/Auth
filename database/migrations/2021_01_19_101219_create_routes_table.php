@@ -17,7 +17,8 @@ class CreateRoutesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('start_from');
-            $table->string('final_destination');
+            $table->string('state_id');
+            $table->string('district');
             $table->integer('price');
             $table->string('bus_id');
             $table->timestamps();

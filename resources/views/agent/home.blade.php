@@ -99,7 +99,7 @@
             <td>{{ $in->id }}</td>
             <td>{{ $in->name }}</td>
             <td>{{ $in->start_from }}</td>
-            <td>{{ $in->final_destination }}</td>
+            <td>{{ $in->district }}</td>
             <td>Rs {{ $in->price }}</td>
             <td>{{ $in->bus->reg_num }}</td>
           

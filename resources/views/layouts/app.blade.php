@@ -6,7 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <meta name="_base_url" content="{{ url('/') }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -156,9 +156,10 @@ $("body").on("click",".remove-route",function(){
 $(document).ready(function() {
         $('#state').on('change', function() {
             var stateID = $(this).val();
+            var APP_URL = $('meta[name="_base_url"]').attr('content');
             if(stateID) {
                 $.ajax({
-                    url: '/find-disctrict/'+stateID,
+                    url: APP_URL+"/find-district/"+stateID,
                     type: "GET",
                     data : {"_token":"{{ csrf_token() }}"},
                     dataType: "json",
@@ -169,7 +170,7 @@ $(document).ready(function() {
                         $('#district').focus;
                         $('#district').append('<option value="">-- Select District --</option>'); 
                         $.each(data, function(key, value){
-                        $('select[name="final_destination"]').append('<option value="'+ value.district_name +'">' + value.district_name+ '</option>');
+                        $('select[name="district"]').append('<option value="'+ value.district_name +'">' + value.district_name+ '</option>');
                     });
                   }else{
                     $('#district').empty();

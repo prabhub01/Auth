@@ -28,14 +28,16 @@
      <tr>
             <th>Route Name</th>
             <th>From</th>
-            <th>To</th>
+            <th>State</th>
+            <th>District</th>
             <th>Price</th>
             <th>Bus Number</th>
         </tr>
         <tr>
             <td>{{ $details->name }}</td>
             <td>{{ $details->start_from }}</td>
-            <td>{{ $details->final_destination }}</td>
+            <td>{{ $details->state->state_name }}</td>
+            <td>{{ $details->district }}</td>
             <td>{{ $details->price }}</td>
             <td>{{ $details->bus->reg_num }}</td>
          </tr>

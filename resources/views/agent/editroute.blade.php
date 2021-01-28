@@ -43,10 +43,23 @@
             </div>
 
             <div class="form-group col-md-6">
-            <strong>To:</strong>
-                <input type="text" name="final_destination" class="form-control" value="{{ $info->final_destination }}">
+                <strong>Destination Provience:</strong>
+                <select class="form-control" id="state" name="state_id">
+                <option selected disabled>--Select State--</option>
+                @foreach ($state as $states)
+                    {{-- <option value="{{ $states->id }}">{{ $states->state_name }}</option> --}}
+                    <option value="{{ $states->id }}" {{ $states->id == $info->id ? 'selected':''  }}> {{ $states->state_name }} </option>    
+                @endforeach
+                </select>
             </div>
 
+            <div class="form-group col-md-6">
+                <strong>Destination District:</strong>
+                <select class="form-control" name="district" id="district">
+                     <option value="{{ $info->district }}" {{ $info->id == $info->id ? 'selected':''  }}> {{ $info->district }} </option>    
+                </select>
+            </div>
+            
             <div class="form-group col-md-6">
                 <strong>Select Bus:</strong>
                 <select name="bus_id" class="form-control">

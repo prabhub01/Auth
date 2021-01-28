@@ -16,4 +16,5 @@ class Reservation extends Model
     function route(){
         return $this->belongsTo(Route::Class, 'route_id');
     }
+
 }

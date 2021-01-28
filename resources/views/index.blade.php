@@ -58,7 +58,7 @@
             <td>{{ $info->id }}</td>
             <td>{{ $info->name }}</td>
             <td>{{ $info->start_from }}</td>
-            <td>{{ $info->final_destination }}</td>
+            <td>{{ $info->district }}</td>
             <td>Rs {{ $info->price }}</td>
             <td>{{ $info->bus->reg_num }}</td>
 

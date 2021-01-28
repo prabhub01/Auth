@@ -38,7 +38,7 @@ Route::post('/addroute-submit', [App\Http\Controllers\RouteController::class, 's
 Route::get('/editroute/{id}', [App\Http\Controllers\RouteController::class, 'edit'])->name('editroute');
 Route::post('/updateroute/{id}', [App\Http\Controllers\RouteController::class, 'update'])->name('updateroute');
 Route::get('/deleteroute/{id}', [App\Http\Controllers\RouteController::class, 'destroy'])->name('deleteroute');
-Route::get('/find-disctrict/{id}', [App\Http\Controllers\RouteController::class, 'findDisWithStateID'])->name('find-disctrict');
+Route::get('/find-district/{id}', [App\Http\Controllers\RouteController::class, 'findDisWithStateID'])->name('find-disctrict');
 
 
 //Reservation

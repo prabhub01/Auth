@@ -37,8 +37,12 @@
             <td>{{ $info->route->start_from }}</td>
         </tr>
         <tr>
-            <th>To</th>
-            <td>{{ $info->route->final_destination }}</td>
+            <th>State</th>
+            <td>{{ $info->route->state->state_name }}</td>
+        </tr>
+        <tr>
+            <th>District</th>
+            <td>{{ $info->route->district }}</td>
         </tr>
         <tr>
             <th>Name</th>

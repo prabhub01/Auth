@@ -42,10 +42,12 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required',
             'start_from' => 'required',
-            'final_destination' => 'required',
+            'state_id' => 'required',
+            'district' => 'required',
             'bus_id' => 'required',
             'price' => 'required',
         ]);
@@ -76,10 +78,10 @@ class RouteController extends Controller
     public function edit($id)
     {
         $info = Route::findOrFail($id);
-
-        //fetching all data from Bus Table 
-        $data= Bus::get(); 
-        return view('agent.editroute',['info'=>$info, 'data'=>$data]);
+        $data = Bus::get(); 
+        $states = State::get();
+        $dist = District::get();
+        return view('agent.editroute',['info'=>$info, 'data'=>$data, 'state'=>$states, 'district'=>$dist]);
     }
 
     /**
@@ -94,7 +96,8 @@ class RouteController extends Controller
         $request->validate([
             'name' => 'required',
             'start_from' => 'required',
-            'final_destination' => 'required',
+            'state_id' => 'required',
+            'district' => 'required',
             'bus_id' => 'required',
             'price' => 'required',
         ]);
@@ -102,7 +105,8 @@ class RouteController extends Controller
         // escape the token field while updating the record
         $data['name']=$request->name;
         $data['start_from']=$request->start_from;
-        $data['final_destination']=$request->final_destination;
+        $data['state_id']=$request->state_id;
+        $data['district']=$request->district;
         $data['bus_id']=$request->bus_id;
         $data['price']=$request->price;
 
@@ -123,7 +127,7 @@ class RouteController extends Controller
         return redirect()->route('home')
                         ->with('success','Route deleted successfully');
     }
-
+    
     public function findDisWithStateID($id)
     {
         $district = District::where('state_id',$id)->get();

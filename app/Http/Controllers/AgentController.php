@@ -8,12 +8,6 @@ use Illuminate\Http\Request;
 
 class AgentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public function index()
     {
         return view('agent.index');
@@ -26,7 +20,7 @@ class AgentController extends Controller
    
     public function store(Request $request)
     {
-       
+        
     }
 
     public function show()
@@ -36,7 +30,6 @@ class AgentController extends Controller
         // dd($value);
         $in=Reservation::all();
         return view('agent.home',['route'=>$value, 'data'=>$data, 'info'=>$in]);
-
     }
 
     public function booking($id)
