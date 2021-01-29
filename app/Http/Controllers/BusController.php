@@ -14,7 +14,8 @@ class BusController extends Controller
      */
     public function index()
     {
-        //
+        $data=Bus::all();
+        return view('admin.bus',['businfo'=>$data]);
     }
 
     /**
@@ -24,7 +25,7 @@ class BusController extends Controller
      */
     public function create()
     {
-        return view('agent.createbus');
+        return view('admin.createbus');
     }
 
     /**
@@ -42,7 +43,7 @@ class BusController extends Controller
             'seat_capacity' => 'required',
         ]);
         Bus::create($request->all());
-        return redirect()->route('home')
+        return redirect()->route('bus')
                         ->with('success','New Bus Added successfully.');
     }
 
@@ -54,7 +55,7 @@ class BusController extends Controller
      */
     public function show($id)
     {
-        //
+      
     }
 
     /**
@@ -67,7 +68,7 @@ class BusController extends Controller
     {
         $details = Bus::findOrFail($id);
         $data= Bus::all();
-        return view('agent.editbus', ['details'=>$details, 'data'=>$data]);
+        return view('admin.editbus', ['details'=>$details, 'data'=>$data]);
     }
 
     /**
@@ -92,7 +93,7 @@ class BusController extends Controller
         $data['seat_capacity']=$request->seat_capacity;
 
         Bus::whereId($id)->update($data);
-        return redirect()->route('home')
+        return redirect()->route('bus')
         ->with('success','Bus Updated successfully.');
     /**
      * Remove the specified resource from storage.
@@ -105,7 +106,7 @@ class BusController extends Controller
     public function destroy(Bus $bus, $id)
     {
         $bus->destroy($id);
-        return redirect()->route('home')
+        return redirect()->route('bus')
                         ->with('success','Bus deleted successfully');
     }
 }

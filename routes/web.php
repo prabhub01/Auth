@@ -26,6 +26,7 @@ Route::get('/home', [App\Http\Controllers\AgentController::class, 'show'])->name
 Route::get('/index', [App\Http\Controllers\RouteController::class, 'show'])->name('index');
 
 //CRUD of Bus 
+Route::get('/bus', [App\Http\Controllers\BusController::class, 'index'])->name('bus');
 Route::get('/addbus', [App\Http\Controllers\BusController::class, 'create'])->name('addbus');
 Route::post('/addbus-submit', [App\Http\Controllers\BusController::class, 'store'])->name('addbus-submit');
 Route::get('/editbus/{id}', [App\Http\Controllers\BusController::class, 'edit'])->name('editbus');
@@ -33,13 +34,13 @@ Route::post('/updatebus/{id}', [App\Http\Controllers\BusController::class, 'upda
 Route::get('/deletebus/{id}', [App\Http\Controllers\BusController::class, 'destroy'])->name('deletebus');
 
 //CRUD of Routes
+Route::get('/route', [App\Http\Controllers\RouteController::class, 'index'])->name('route');
 Route::get('/addroute', [App\Http\Controllers\RouteController::class, 'create'])->name('addroute');
 Route::post('/addroute-submit', [App\Http\Controllers\RouteController::class, 'store'])->name('addroute-submit');
 Route::get('/editroute/{id}', [App\Http\Controllers\RouteController::class, 'edit'])->name('editroute');
 Route::post('/updateroute/{id}', [App\Http\Controllers\RouteController::class, 'update'])->name('updateroute');
 Route::get('/deleteroute/{id}', [App\Http\Controllers\RouteController::class, 'destroy'])->name('deleteroute');
 Route::get('/find-district/{id}', [App\Http\Controllers\RouteController::class, 'findDisWithStateID'])->name('find-disctrict');
-
 
 //Reservation
 Route::get('/book/{id}', [App\Http\Controllers\CustomerController::class, 'index'])->name('book');

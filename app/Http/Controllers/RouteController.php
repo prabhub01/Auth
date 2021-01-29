@@ -18,7 +18,8 @@ class RouteController extends Controller
      */
     public function index()
     {
-        //
+        $value=Route::with('bus')->get();
+        return view('admin.route',['route'=>$value]);
     }
 
     /**
@@ -31,7 +32,7 @@ class RouteController extends Controller
          //fetching all data from the table bus
          $data= Bus::get(); 
          $states = State::all();
-         return view('agent.createroute', compact('data','states'));
+         return view('admin.createroute', compact('data','states'));
     }
 
     /**
@@ -53,7 +54,7 @@ class RouteController extends Controller
         ]);
 
         Route::create($request->all());
-        return redirect()->route('home')
+        return redirect()->route('route')
                         ->with('success','New Route Added successfully.');
     }
 
@@ -81,7 +82,7 @@ class RouteController extends Controller
         $data = Bus::get(); 
         $states = State::get();
         $dist = District::get();
-        return view('agent.editroute',['info'=>$info, 'data'=>$data, 'state'=>$states, 'district'=>$dist]);
+        return view('admin.editroute',['info'=>$info, 'data'=>$data, 'state'=>$states, 'district'=>$dist]);
     }
 
     /**
@@ -111,7 +112,7 @@ class RouteController extends Controller
         $data['price']=$request->price;
 
         Route::whereId($id)->update($data);
-        return redirect()->route('home')
+        return redirect()->route('route')
         ->with('success','Route Updated successfully.');
     }
 

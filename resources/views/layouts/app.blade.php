@@ -16,6 +16,9 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+     <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -64,11 +67,20 @@
                             @endif -->
                         @else
                         <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('index') }}">{{ __('Booking Here') }}</a>
+                              <a class="nav-link" href="{{ route('index') }}"> <i class="fa fa-money" aria-hidden="true"></i>&nbsp; {{ __('Booking Here') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('home') }}">  <i class="fa fa-home" aria-hidden="true"></i>&nbsp; {{ __('Home') }}</a>
+                                 </li>
+                                <li class="nav-item">
+                                   <a class="nav-link" href="{{ route('bus') }}">  <i class="fa fa-bus" aria-hidden="true"></i>&nbsp; {{ __('Bus') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                 <a class="nav-link" href="{{ route('route') }}">  <i class="fa fa-road" aria-hidden="true"></i>&nbsp;  {{ __('Route') }}</a>
                                 </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    <i class="fa fa-user" aria-hidden="true"></i>   {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
