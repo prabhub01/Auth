@@ -19,7 +19,10 @@ class RouteController extends Controller
     public function index()
     {
         $value=Route::with('bus')->get();
-        return view('admin.route',['route'=>$value]);
+        if (Gate::allows('admin-only', auth()->user())) {
+            return view('admin.route',['route'=>$value]);
+        }
+        return 'You are not an authorized to view this Page!!!!';
     }
 
     /**
@@ -32,7 +35,10 @@ class RouteController extends Controller
          //fetching all data from the table bus
          $data= Bus::get(); 
          $states = State::all();
-         return view('admin.createroute', compact('data','states'));
+         if (Gate::allows('admin-only', auth()->user())) {
+            return view('admin.createroute', compact('data','states'));
+        }
+        return 'You are not an authorized to view this Page!!!!';   
     }
 
     /**

@@ -66,18 +66,23 @@
                                 </li>
                             @endif -->
                         @else
-                        <li class="nav-item">
+                                @auth
+                              <li class="nav-item">
                               <a class="nav-link" href="{{ route('index') }}"> <i class="fa fa-money" aria-hidden="true"></i>&nbsp; {{ __('Booking Here') }}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('home') }}">  <i class="fa fa-home" aria-hidden="true"></i>&nbsp; {{ __('Home') }}</a>
                                  </li>
+
+                                 @can('admin-only', auth()->user())
                                 <li class="nav-item">
                                    <a class="nav-link" href="{{ route('bus') }}">  <i class="fa fa-bus" aria-hidden="true"></i>&nbsp; {{ __('Bus') }}</a>
                                 </li>
                                 <li class="nav-item">
                                  <a class="nav-link" href="{{ route('route') }}">  <i class="fa fa-road" aria-hidden="true"></i>&nbsp;  {{ __('Route') }}</a>
                                 </li>
+                                @endcan
+                                @endauth
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <i class="fa fa-user" aria-hidden="true"></i>   {{ Auth::user()->name }}
@@ -95,6 +100,7 @@
                                     </form>
                                 </div>
                             </li>
+                            
                         @endguest
                     </ul>
                 </div>
