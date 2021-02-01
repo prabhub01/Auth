@@ -26,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('admin-only', function ($user) {
-            if($user->isAdmin == 1)
+            if($user->role_id == 1)
             {
                 return true;
             }

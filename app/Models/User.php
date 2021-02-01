@@ -22,6 +22,10 @@ class User extends Authenticatable
         'password',
     ];
 
+    function role(){
+        return $this->belongsTo(Role::Class,'role_id');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

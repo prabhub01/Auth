@@ -81,6 +81,9 @@
                                 <li class="nav-item">
                                  <a class="nav-link" href="{{ route('route') }}">  <i class="fa fa-road" aria-hidden="true"></i>&nbsp;  {{ __('Route') }}</a>
                                 </li>
+                                <li class="nav-item">
+                                 <a class="nav-link" href="{{ route('role') }}">  <i class="fa fa-users" aria-hidden="true"></i>&nbsp;  {{ __('Role') }}</a>
+                                </li>
                                 @endcan
                                 @endauth
                             <li class="nav-item dropdown">
@@ -149,6 +152,33 @@ $("body").on("click",".remove-route",function(){
     swal({
         title: "Are you sure?",
         text: "You want to remove this route ?",
+        type: "error",
+        showCancelButton: true,
+        dangerMode: true,
+        cancelButtonClass: '#DD6B55',
+        confirmButtonColor: '#dc3545',
+        confirmButtonText: 'Delete!',
+    },function (result) {
+        if (result) {
+            var action = current_object.attr('data-action');
+            var token = jQuery('meta[name="csrf-token"]').attr('content');
+            var id = current_object.attr('data-id');
+
+            $('body').html("<form class='form-inline remove-form' method='get' action='"+action+"'></form>");
+            $('body').find('.remove-form').append('<input name="_method" type="hidden" value="delete">');
+            $('body').find('.remove-form').append('<input name="_token" type="hidden" value="'+token+'">');
+            $('body').find('.remove-form').append('<input name="id" type="hidden" value="'+id+'">');
+            $('body').find('.remove-form').submit();
+        }
+    });
+});
+
+// Sweet Alert Message for deleting Roles
+$("body").on("click",".remove-role",function(){
+    var current_object = $(this);
+    swal({
+        title: "Are you sure?",
+        text: "You want to remove this role ?",
         type: "error",
         showCancelButton: true,
         dangerMode: true,
