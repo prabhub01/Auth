@@ -55,7 +55,6 @@
       </table>
     </div>
 
-    
       <div class="row" style="width:30%; margin:0px auto; float:right;">
       {{-- <table class="table table-bordered"> --}}
         <table class="table table-sm">
