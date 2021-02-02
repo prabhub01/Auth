@@ -40,12 +40,7 @@
                 <option value="{{ $bus_name->type }}" {{ $bus_name->id == $details->id ? 'selected':''  }}> {{ $bus_name->type }} </option>
                 @endforeach
                 </select>
-                <!-- <select class="form-control" name="type">
-                <option value="{{ $details->type }}"> {{ $details->type }} </option>
-                <option value="Deluxe">Deluxe</option>
-                <option value="Semi-Deluxe">Semi-Deluxe</option>
-                <option value="Full AC">Full AC</option>
-                </select> -->
+
             </div>
             <div class="form-group col-md-6">
                 <strong>Registration Number:</strong>

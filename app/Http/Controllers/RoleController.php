@@ -22,7 +22,7 @@ class RoleController extends Controller
             // return view('admin.role',compact('data','info'));
             return view('admin.role',['userinfo'=>$data, 'roleinfo'=>$info]);
         }
-        return 'You are not an authorized to view this Page!!!!';
+        return 'Unauthorized Access !!!! Login as Admin to get access';
     }
 
     /**
@@ -35,7 +35,7 @@ class RoleController extends Controller
         if (Gate::allows('admin-only', auth()->user())) {
             return view('admin.createrole');
         }
-        return 'You are not an authorized to view this Page!!!!';
+        return 'Unauthorized Access !!!! Login as Admin to get access';
     }
 
     /**
