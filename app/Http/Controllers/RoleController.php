@@ -17,12 +17,12 @@ class RoleController extends Controller
     {
         $data=User::get();
         $info=Role::get();
+        return view('admin.role',['userinfo'=>$data, 'roleinfo'=>$info]);
 
-        if (Gate::allows('admin-only', auth()->user())) {
-            // return view('admin.role',compact('data','info'));
-            return view('admin.role',['userinfo'=>$data, 'roleinfo'=>$info]);
-        }
-        return 'Unauthorized Access !!!! Login as Admin to get access';
+
+        // if (Gate::allows('admin-only', auth()->user())) {
+        //  }
+        // return 'Unauthorized Access !!!! Login as Admin to get access';
     }
 
     /**
@@ -32,10 +32,11 @@ class RoleController extends Controller
      */
     public function create()
     {
-        if (Gate::allows('admin-only', auth()->user())) {
-            return view('admin.createrole');
-        }
-        return 'Unauthorized Access !!!! Login as Admin to get access';
+        // return view('admin.createrole');
+        
+        // if (Gate::allows('admin-only', auth()->user())) { 
+        // }
+        // return 'Unauthorized Access !!!! Login as Admin to get access';
     }
 
     /**
@@ -46,12 +47,12 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'role' => 'required',
-        ]);
-        Role::create($request->all());
-        return redirect()->route('role')
-                        ->with('success','New Role Created.');
+        // $request->validate([
+        //     'role' => 'required',
+        // ]);
+        // Role::create($request->all());
+        // return redirect()->route('role')
+        //                 ->with('success','New Role Created.');
     }
 
     /**

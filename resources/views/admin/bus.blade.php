@@ -20,8 +20,11 @@
                 <h3>List of all buses </h3>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('addbus') }}"> Add New Bus</a>
+                @role('admin')
+                    <a class="btn btn-success" href="{{ route('addbus') }}"> Add New Bus</a>
+                @endrole
             </div>
+
     </div>
         <tr>
             <th>I.D.</th>
@@ -37,9 +40,14 @@
             <td>{{ $bus->reg_num }}</td>
             <td>{{ $bus->seat_capacity }}</td>
             <td>
+                @role('agent')
                     <a class="btn btn-primary" href="{{ route('editbus',$bus->id) }}">Edit</a>
+                @endrole
+                
+                @role('admin')
                     <button class="btn btn-danger remove-bus" data-id="{{ $bus->id }}" data-action="{{ route('deletebus', $bus->id) }}">Delete</button>
-            </td>
+                @endrole
+                </td>
         </tr>
         @endforeach
     </table>

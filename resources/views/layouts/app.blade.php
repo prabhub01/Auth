@@ -74,7 +74,7 @@
                                     <a class="nav-link" href="{{ route('home') }}">  <i class="fa fa-home" aria-hidden="true"></i>&nbsp; {{ __('Home') }}</a>
                                  </li>
 
-                                 @can('admin-only', auth()->user())
+                                 
                                 <li class="nav-item">
                                    <a class="nav-link" href="{{ route('bus') }}">  <i class="fa fa-bus" aria-hidden="true"></i>&nbsp; {{ __('Bus') }}</a>
                                 </li>
@@ -84,7 +84,7 @@
                                 <li class="nav-item">
                                  <a class="nav-link" href="{{ route('role') }}">  <i class="fa fa-users" aria-hidden="true"></i>&nbsp;  {{ __('Role') }}</a>
                                 </li>
-                                @endcan
+                                
                                 @endauth
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Bus;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class BusController extends Controller
 {
@@ -14,12 +16,18 @@ class BusController extends Controller
      */
     public function index()
     {
-        $data=Bus::all();
+        // auth()->user()->assignRole('admin');
+        // auth()->user()->assignRole('agent');
+        // auth()->user()->assignRole('customer');
 
-        if (Gate::allows('admin-only', auth()->user())) {
-            return view('admin.bus',['businfo'=>$data]);
-        }
-        return 'You are not an authorized to view this Page!!!!';
+
+        $data=Bus::all();
+        return view('admin.bus',['businfo'=>$data]);
+
+        // if (Gate::allows('admin-only', auth()->user())) {
+            
+        // }
+        // return 'You are not an authorized to view this Page!!!!';
     }
 
     /**
@@ -29,10 +37,11 @@ class BusController extends Controller
      */
     public function create()
     {
-        if (Gate::allows('admin-only', auth()->user())) {
-            return view('admin.createbus');
-        }
-        return 'You are not an authorized to view this Page!!!!';
+        return view('admin.createbus');
+
+        // if (Gate::allows('admin-only', auth()->user())) {  
+        // }
+        // return 'You are not an authorized to view this Page!!!!';
     }
 
     /**

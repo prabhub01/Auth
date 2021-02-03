@@ -20,7 +20,9 @@
                 <h3>List of all Routes </h3>
             </div>
             <div class="pull-right">
+                @role('admin')
                 <a class="btn btn-success" href="{{ route('addroute') }}"> Add New Route</a>
+                @endrole
             </div>
     </div>
         <tr>
@@ -40,10 +42,11 @@
             <td>{{ $in->district }}</td>
             <td>Rs {{ $in->price }}</td>
             <td>{{ $in->bus->reg_num }}</td>
-          
             <td>
+                @role('admin')
                     <a class="btn btn-primary" href="{{ route('editroute', $in->id) }}">Edit</a>
                     <button class="btn btn-danger remove-route" data-id="{{ $in->id }}" data-action="{{ route('deleteroute', $in->id) }}">Delete</button>
+                @endrole
             </td>
         </tr>
         @endforeach

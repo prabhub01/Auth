@@ -42,7 +42,8 @@
             <th scope="row">{{ $users->id }}</th>
             <td>{{ $users->name }}</td>
             <td>{{ $users->email }}</td>
-            <td>{{ $users->role->role }}</td>
+            <td></td>
+            {{-- <td>{{ $users->role->name }}</td> --}}
             <td>
                 <a href="{{ route('edituser',$users->id) }}"> <i class="fa fa-pencil" aria-hidden="true"></i> </a> &nbsp;|&nbsp;
                 <a class="remove-category" data-id="" data-action="">
@@ -78,7 +79,7 @@
             @foreach ($roleinfo as $role)
             <tr>
               <th scope="row">{{ $role->id }}</th>
-              <td>{{ $role->role }}</td>
+              <td>{{ $role->name }}</td>
               {{-- <td>
                   <a class="remove-role" data-id="{{ $role->id }}" data-action="{{ route('deleterole', $role->id) }}">
                   <i class="fa fa-trash" aria-hidden="true"></i></a>

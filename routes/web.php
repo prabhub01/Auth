@@ -27,13 +27,9 @@ Route::get('/index', [App\Http\Controllers\RouteController::class, 'show'])->nam
 
 // Roles
 Route::get('/role', [App\Http\Controllers\RoleController::class, 'index'])->name('role');
-Route::get('/addrole', [App\Http\Controllers\roleController::class, 'create'])->name('addrole');
-Route::post('/addrole-submit', [App\Http\Controllers\RoleController::class, 'store'])->name('addrole-submit');
 Route::get('/deleterole/{id}', [App\Http\Controllers\RoleController::class, 'destroy'])->name('deleterole');
 Route::get('/edituser/{id}', [App\Http\Controllers\RoleController::class, 'edit'])->name('edituser');
 Route::post('/updateuser/{id}', [App\Http\Controllers\RoleController::class, 'update'])->name('updateuser');
-
-
 
 //CRUD of Bus 
 Route::get('/bus', [App\Http\Controllers\BusController::class, 'index'])->name('bus');
