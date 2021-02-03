@@ -48,7 +48,11 @@
             <td>{{ $users->name }}</td>
             <td>{{ $users->email }}</td>
             <td>
-                     
+              @if(!empty($users->getRoleNames()))
+              @foreach($users->getRoleNames() as $v)
+                 <label class="badge badge-success">{{ $v }}</label>
+              @endforeach
+              @endif         
             </td>
             
             <td>
@@ -58,7 +62,6 @@
                   <i class="fa fa-trash"></i></a>
               @endrole
             </td>
-            {{-- <a class="btn btn-primary" href="{{ route('editbus',$bus->id) }}">Edit</a> --}}
           </tr>
           @endforeach
           </tbody>
