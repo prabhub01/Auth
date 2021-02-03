@@ -50,7 +50,7 @@ class UserController extends Controller
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
 
-        $user = User::create($request->all());
+        $user = User::create($input);
         $user->assignRole($request->input('role'));
 
         return redirect()->route('role')

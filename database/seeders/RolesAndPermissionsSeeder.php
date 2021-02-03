@@ -46,14 +46,7 @@ class RolesAndPermissionsSeeder extends Seeder
         
        $role = Role::create(['name' => 'agent'])
             ->givePermissionTo(['register', 'login', 'edit bus', 'add route', 'edit route', 'view reservation', 'confirm tickets']);
-      
-        $role = Role::create(['name' => 'customer'])
-            ->givePermissionTo(['reservation']);
-        
-        
-        //    assigning a role to models i.e. Different Users
-        
-        // $user->assignRole($role->admin);
+
         }
 
     }
