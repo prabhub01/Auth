@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -22,10 +24,6 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
-    function role(){
-        return $this->belongsTo(Role::Class,'role_id');
-    }
 
     /**
      * The attributes that should be hidden for arrays.

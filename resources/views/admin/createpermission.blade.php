@@ -2,12 +2,12 @@
 @section('content')
 <div class="container">
 
-    <form action="addrole-submit" method="POST">
+    <form action="addPermission-submit" method="POST">
         @csrf
          <div class="row col-xs-12 col-sm-12 col-md-12" style="margin-top:20px;">
                 <div class="form-group col-md-6">
-                    <strong>Role Name:</strong>
-                    <input type="text" name="name" class="form-control" placeholder="Define a role here">
+                    <strong>Permission Name:</strong>
+                    <input type="text" name="name" class="form-control" placeholder="Define a Permission here">
                 </div>
             
             <div class="col-xs-12 col-sm-12 col-md-12 text-left">

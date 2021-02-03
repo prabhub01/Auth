@@ -29,35 +29,30 @@
     </div>
 @endif
 
-<form action="{{ route('updateuser', $user->id ) }}" method="POST">
+<form action="{{ route('updaterole', $details->id ) }}" method="POST">
     @csrf
     <!-- @method('PUT') -->
      <div class="row col-xs-12 col-sm-12 col-md-12" style="margin-top:20px;">
             <div class="form-group col-md-6">
-                <strong>Name:</strong>
-                <input type="text" name="name" class="form-control" value="{{ $user->name }}">
-            </div>
-
-            <div class="form-group col-md-6">
-                <strong>Email:</strong>
-                <input type="email" name="email" class="form-control" value="{{ $user->email }}">
+                <strong>Role:</strong>
+                <input type="text" name="name" class="form-control" value="{{ $details->name }}">
             </div>
             
             <div class="form-group col-md-6">
-                <strong>Role:</strong>
-                <select name="role[]" class="form-control" multiple>
-                    
-                    @foreach($roles as $role) 
-                    <option value="{{ $role->id }}" {{ $role->id == in_array($role->id, $userRole) ? 'selected':'' }}> 
-                        {{ $role->name }} </option>
-                    @endforeach
-
+                <strong>Permissions:</strong>
+                <select name="rolePermission[]" class="form-control" multiple>
+                @foreach($permissions as $per) 
+                <option value="{{ $per->id }}" {{ $per->id == in_array($per->id, $rolePermissions) ? 'selected':'' }}> 
+                    {{ $per->name }} </option>
+                @endforeach
                 </select>
             </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 text-right">
                 <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
 </form>
+
 </div>
 @endsection

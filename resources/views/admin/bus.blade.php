@@ -40,7 +40,7 @@
             <td>{{ $bus->reg_num }}</td>
             <td>{{ $bus->seat_capacity }}</td>
             <td>
-                @role('agent')
+                @role('admin|agent')
                     <a class="btn btn-primary" href="{{ route('editbus',$bus->id) }}">Edit</a>
                 @endrole
                 

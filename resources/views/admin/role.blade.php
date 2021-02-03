@@ -26,7 +26,12 @@
         <div class="pull-left">
             <h3>Users</h3>
         </div>
-</div>
+        <div class="pull-right">
+          @role('admin')
+          <a href="{{ route('adduser') }}"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp;Create New User</a>
+          @endrole
+        </div>
+    </div>
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -42,12 +47,16 @@
             <th scope="row">{{ $users->id }}</th>
             <td>{{ $users->name }}</td>
             <td>{{ $users->email }}</td>
-            <td></td>
-            {{-- <td>{{ $users->role->name }}</td> --}}
             <td>
+                     
+            </td>
+            
+            <td>
+              @role('admin')
                 <a href="{{ route('edituser',$users->id) }}"> <i class="fa fa-pencil" aria-hidden="true"></i> </a> &nbsp;|&nbsp;
-                <a class="remove-category" data-id="" data-action="">
-                <i class="fa fa-trash" aria-hidden="true"></i></a>
+                  <a class="remove-user" data-id="{{ $users->id }}" data-action="{{ route('deleteuser', $users->id) }}">
+                  <i class="fa fa-trash"></i></a>
+              @endrole
             </td>
             {{-- <a class="btn btn-primary" href="{{ route('editbus',$bus->id) }}">Edit</a> --}}
           </tr>
@@ -61,18 +70,19 @@
         <table class="table table-sm">
         <div class="col-lg-12 margin-tb" style="margin-top:20px;">
           <div class="pull-left">
-            <h4>Manage Role</h4>
+            <h4>All Roles</h4>
         </div>
           <div class="pull-right">
-              {{-- <a class="btn btn-success" href="{{ route('addrole') }}"> Create New Role</a> --}}
-              <a href=""><i class="fa fa-plus" aria-hidden="true"></i> &nbsp;Create New Role</a>
-          </div>
+              @role('admin')
+              <a href="{{ route('addrole') }}"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp;Create New Role</a>
+              @endrole
+            </div>
           </div>
           <thead>
             <tr>
               <th scope="col">#</th>
               <th scope="col">Roles</th>
-              {{-- <th scope="col">Action</th> --}}
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -80,14 +90,52 @@
             <tr>
               <th scope="row">{{ $role->id }}</th>
               <td>{{ $role->name }}</td>
-              {{-- <td>
+              <td>
+                @role('admin')
+                <a href="{{ route('editrole',$role->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a> |           
                   <a class="remove-role" data-id="{{ $role->id }}" data-action="{{ route('deleterole', $role->id) }}">
-                  <i class="fa fa-trash" aria-hidden="true"></i></a>
-              </td>   --}}
+                  <i class="fa fa-trash"></i></a>
+                  @endrole
+                </td>
             </tr>
             @endforeach
             </tbody>
         </table>
+      </div>
+      <hr/>
+      <div style="width:40%; margin-top: 30%;">
+        <table class="table table-sm">
+          <div class="col-lg-12 margin-tb" style="margin-top:20px;">
+            <div class="pull-left">
+              <h4>Manage Permission</h4>
+          </div>
+          <div class="pull-right">
+            @role('admin')
+            <a href="{{ route('addPermission') }}"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp;Create New Permissions</a>
+            @endrole
+          </div>
+            </div>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Permisisons</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($per as $permission)
+              <tr>
+                <th scope="row">{{ $permission->id }}</th>
+                <td>{{ $permission->name }}</td>
+                <td>
+                  @role('admin')
+                  <a href="{{ route('editPermission',$permission->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
+                  @endrole
+                </td>  
+              </tr>
+              @endforeach
+              </tbody>
+          </table>
       </div>
 </div>
 @endsection

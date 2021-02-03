@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 use\App\Models\User;
-use App\Models\Role;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -17,7 +19,9 @@ class RoleController extends Controller
     {
         $data=User::get();
         $info=Role::get();
-        return view('admin.role',['userinfo'=>$data, 'roleinfo'=>$info]);
+        $permi=Permission::get();
+
+        return view('admin.role',['userinfo'=>$data, 'roleinfo'=>$info,'per'=>$permi,]);
 
 
         // if (Gate::allows('admin-only', auth()->user())) {
@@ -32,7 +36,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        // return view('admin.createrole');
+        return view('admin.createrole');
         
         // if (Gate::allows('admin-only', auth()->user())) { 
         // }
@@ -47,12 +51,14 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'role' => 'required',
-        // ]);
-        // Role::create($request->all());
-        // return redirect()->route('role')
-        //                 ->with('success','New Role Created.');
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        // dd($request);
+        Role::create($request->all());
+        return redirect()->route('role')
+                        ->with('success','New Role Created.');
     }
 
     /**
@@ -74,18 +80,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $details = User::findOrFail($id);
-        $data= Role::get();
-        return view('admin.edituser', ['details'=>$details, 'data'=>$data]);
+       
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Role  $role
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -103,6 +100,45 @@ class RoleController extends Controller
         return redirect()->route('role')
         ->with('success','Users Details Updated successfully.');
     }
+
+    public function editrole($id)
+    {
+        //getting permissions related to this role
+        $permissions = Permission::get();
+        
+        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
+        ->pluck('role_has_permissions.permission_id')
+        ->all();
+
+        $details = Role::findOrFail($id);
+        return view('admin.editrole', ['details'=>$details,'permissions'=>$permissions, 'rolePermissions'=>$rolePermissions]);
+    }
+
+    public function updaterole(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'rolePermission' => 'required',
+        ]);
+        
+        // escape the token field while updating the record
+        $data['name']=$request->name;
+        // $data['rolePermission']=$request->rolePermission;
+        
+        // dd($request);
+
+        Role::whereId($id)->update($data);
+        return redirect()->route('role')
+        ->with('success','Role Updated successfully.');
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Role  $role
+     * @return \Illuminate\Http\Response
+     */
+    
 
     /**
      * Remove the specified resource from storage.

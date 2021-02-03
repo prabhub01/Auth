@@ -27,9 +27,25 @@ Route::get('/index', [App\Http\Controllers\RouteController::class, 'show'])->nam
 
 // Roles
 Route::get('/role', [App\Http\Controllers\RoleController::class, 'index'])->name('role');
+Route::get('/addrole', [App\Http\Controllers\RoleController::class, 'create'])->name('addrole');
+Route::post('/addrole-submit', [App\Http\Controllers\RoleController::class, 'store'])->name('addrole-submit');
+Route::get('/editrole/{id}', [App\Http\Controllers\RoleController::class, 'editrole'])->name('editrole');
+Route::post('/updaterole/{id}', [App\Http\Controllers\RoleController::class, 'updaterole'])->name('updaterole');
 Route::get('/deleterole/{id}', [App\Http\Controllers\RoleController::class, 'destroy'])->name('deleterole');
-Route::get('/edituser/{id}', [App\Http\Controllers\RoleController::class, 'edit'])->name('edituser');
-Route::post('/updateuser/{id}', [App\Http\Controllers\RoleController::class, 'update'])->name('updateuser');
+
+//Permissions
+Route::get('/addPermission', [App\Http\Controllers\PermissionController::class, 'create'])->name('addPermission');
+Route::post('/addPermission-submit', [App\Http\Controllers\PermissionController::class, 'store'])->name('addPermission-submit');
+Route::get('/editPermission/{id}', [App\Http\Controllers\PermissionController::class, 'edit'])->name('editPermission');
+Route::post('/updatePeprmission/{id}', [App\Http\Controllers\PermissionController::class, 'update'])->name('updatePermission');
+// Route::get('/deleterole/{id}', [App\Http\Controllers\RoleController::class, 'destroy'])->name('deleterole');
+
+//Users
+Route::get('/adduser', [App\Http\Controllers\UserController::class, 'create'])->name('adduser');
+Route::post('/adduser-submit', [App\Http\Controllers\UserController::class, 'store'])->name('adduser-submit');
+Route::get('/edituser/{id}', [App\Http\Controllers\UserController::class, 'edit'])->name('edituser');
+Route::post('/updateuser/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('updateuser');
+Route::get('/deleteuser/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('deleteuser');
 
 //CRUD of Bus 
 Route::get('/bus', [App\Http\Controllers\BusController::class, 'index'])->name('bus');
