@@ -40,7 +40,7 @@
             
             <div class="form-group col-md-6">
                 <strong>Permissions:</strong>
-                <select name="rolePermission[]" class="form-control" multiple>
+                <select name="rolePermission[]" class="form-control select-2" multiple>
                 @foreach($permissions as $per) 
                 <option value="{{ $per->id }}" {{ $per->id == in_array($per->id, $rolePermissions) ? 'selected':'' }}> 
                     {{ $per->name }} </option>

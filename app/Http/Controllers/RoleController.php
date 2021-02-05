@@ -85,20 +85,7 @@ class RoleController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'role_id' => 'required',
-        ]);
-
-        // escape the token field while updating the record
-        $data['name']=$request->name;
-        $data['email']=$request->email;
-        $data['role_id']=$request->role_id;
-
-        User::whereId($id)->update($data);
-        return redirect()->route('role')
-        ->with('success','Users Details Updated successfully.');
+    
     }
 
     public function editrole($id)
@@ -123,11 +110,15 @@ class RoleController extends Controller
         
         // escape the token field while updating the record
         $data['name']=$request->name;
-        // $data['rolePermission']=$request->rolePermission;
+        $data['rolePermission']=$request->rolePermission;
         
-        // dd($request);
+         // Role::whereId($id)->update($data);
+        $role = Role::find($id);
+        $role->update($data);
+       
+        DB::table('role_has_permissions')->where('role_id',$id)->delete();
+        $role->givePermissionTo($request->input('rolePermission'));
 
-        Role::whereId($id)->update($data);
         return redirect()->route('role')
         ->with('success','Role Updated successfully.');
     }
