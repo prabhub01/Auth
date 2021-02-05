@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -22,16 +22,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <!-- JQUERY cdn link -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-
- <!-- Sweet Alert Message -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script> -->
+   <!-- Sweet Alert Message -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+    {{-- Select2 library --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -86,7 +84,7 @@
                                 </li>
                                 
                                 @endauth
-                            <li class="nav-item dropdown">
+                                <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <i class="fa fa-user" aria-hidden="true"></i>   {{ Auth::user()->name }}
                                 </a>
@@ -114,12 +112,13 @@
             @yield('content')
         </main>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"> </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-
-    <script type="text/javascript">
+  <script type="text/javascript">
 // Sweet Alert Message for deleting Bus
-
   $("body").on("click",".remove-bus",function(){
     var current_object = $(this);
     swal({
@@ -256,6 +255,9 @@ $(document).ready(function() {
               $('#district').empty();
             }
         });
+
+        // select2
+        $('.select-2').select2();  
     });
 
 //Calculate total price of booking
@@ -266,7 +268,7 @@ function calculate() {
 		var myResult = myBox1 * myBox2;
 		total.value = myResult;		
 	}
-
 </script>
+
 </body>
 </html>

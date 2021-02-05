@@ -35,14 +35,13 @@
                 </div>
                 <div class="form-group col-md-6">
                     <strong>Assign Role:</strong>
-                    <select name="role[]" class="form-control" multiple>
-                        <option value="">---Select Role(s)---</option>
+                    <select name="role[]" class="form-control select-2" multiple="multiple" placeholder="Select One">
+                        <option value="" disabled>---Select Role(s)---</option>
                         @foreach($info as $role_info) 
                             <option value="{{ $role_info->id }}"> {{ $role_info->name }} </option>
                         @endforeach
                     </select>
-                    
-                    {{-- <input type="text" name="password" class="form-control" placeholder="User's Passoword"> --}}
+                 {{-- <input type="text" name="password" class="form-control" placeholder="User's Passoword"> --}}
                 </div>
             
             <div class="col-xs-12 col-sm-12 col-md-12 text-left">

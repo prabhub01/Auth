@@ -43,10 +43,9 @@ class RolesAndPermissionsSeeder extends Seeder
        $role = Role::create(['name' => 'admin'])
            ->givePermissionTo(['login', 'manage role', 'edit agent', 'delete agent', 
            'add bus', 'edit bus', 'delete bus', 'add route', 'edit route', 'delete route', 'view reservation']);
-        
+            
        $role = Role::create(['name' => 'agent'])
-            ->givePermissionTo(['register', 'login', 'edit bus', 'add route', 'edit route', 'view reservation', 'confirm tickets']);
+           ->givePermissionTo(['register', 'login', 'edit bus', 'add route', 'edit route', 'view reservation', 'confirm tickets']);
 
         }
-
     }

@@ -111,7 +111,7 @@
           <div class="col-lg-12 margin-tb" style="margin-top:20px;">
             <div class="pull-left">
               <h4>Manage Permission</h4>
-          </div>
+            </div>
           <div class="pull-right">
             @role('admin')
             <a href="{{ route('addPermission') }}"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp;Create New Permissions</a>

@@ -45,7 +45,7 @@
             
             <div class="form-group col-md-6">
                 <strong>Role:</strong>
-                <select name="role[]" class="form-control" multiple>
+                <select name="role[]" class="form-control select-2" multiple>
                     
                     @foreach($roles as $role) 
                     <option value="{{ $role->id }}" {{ $role->id == in_array($role->id, $userRole) ? 'selected':'' }}> 
