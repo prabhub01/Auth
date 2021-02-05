@@ -63,7 +63,7 @@
 
             <div class="form-group col-md-4">
                 <strong>Destination District:</strong>
-                <select class="form-control" name="district" id="district" {{ old('district') }}>
+                <select class="form-control" name="district_id" id="district" {{ old('district') }}>
                 </select>
             </div>
 

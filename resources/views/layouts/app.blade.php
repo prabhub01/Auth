@@ -246,7 +246,7 @@ $(document).ready(function() {
                         $('#district').focus;
                         $('#district').append('<option value="">-- Select District --</option>'); 
                         $.each(data, function(key, value){
-                        $('select[name="district"]').append('<option value="'+ value.district_name +'">' + value.district_name+ '</option>');
+                        $('select[name="district_id"]').append('<option value="'+ value.id +'">' + value.district_name+ '</option>');
                     });
                   }else{
                     $('#district').empty();

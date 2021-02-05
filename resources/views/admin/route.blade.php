@@ -39,7 +39,7 @@
             <td>{{ $in->id }}</td>
             <td>{{ $in->name }}</td>
             <td>{{ $in->start_from }}</td>
-            <td>{{ $in->district }}</td>
+            <td>{{ $in->district->district_name }}</td>
             <td>Rs {{ $in->price }}</td>
             <td>{{ $in->bus->reg_num }}</td>
             <td>

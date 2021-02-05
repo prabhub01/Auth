@@ -20,10 +20,6 @@ class RouteController extends Controller
     {
         $value=Route::with('bus')->get();
         return view('admin.route',['route'=>$value]);
-        
-        // if (Gate::allows('admin-only', auth()->user())) { 
-        // }
-        // return 'You are not an authorized to view this Page!!!!';
     }
 
     /**
@@ -56,7 +52,7 @@ class RouteController extends Controller
             'name' => 'required',
             'start_from' => 'required',
             'state_id' => 'required',
-            'district' => 'required',
+            'district_id' => 'required',
             'bus_id' => 'required',
             'price' => 'required',
         ]);
@@ -88,7 +84,7 @@ class RouteController extends Controller
     {
         $info = Route::findOrFail($id);
         $data = Bus::get(); 
-        $states = State::get();
+        $states = State::all();
         $dist = District::get();
         return view('admin.editroute',['info'=>$info, 'data'=>$data, 'state'=>$states, 'district'=>$dist]);
     }
@@ -106,7 +102,7 @@ class RouteController extends Controller
             'name' => 'required',
             'start_from' => 'required',
             'state_id' => 'required',
-            'district' => 'required',
+            'district_id' => 'required',
             'bus_id' => 'required',
             'price' => 'required',
         ]);
@@ -115,7 +111,7 @@ class RouteController extends Controller
         $data['name']=$request->name;
         $data['start_from']=$request->start_from;
         $data['state_id']=$request->state_id;
-        $data['district']=$request->district;
+        $data['district_id']=$request->district_id;
         $data['bus_id']=$request->bus_id;
         $data['price']=$request->price;
 
