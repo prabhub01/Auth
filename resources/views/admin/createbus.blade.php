@@ -35,11 +35,11 @@
      <div class="row col-xs-12 col-sm-12 col-md-12" style="margin-top:20px;">
             <div class="form-group col-md-6">
                 <strong>Bus Type:</strong>
-                <select class="form-control" name="type">
+                <select class="form-control" name="bus_type_id">
                 <option value="" disabled selected>--Select One--</option>
-                <option value="Deluxe">Deluxe</option>
-                <option value="Semi-Deluxe">Semi-Deluxe</option>
-                <option value="Full AC">Full AC</option>
+                    @foreach ($bustype as $type)
+                        <option value="{{ $type->id }}">{{ $type->bus_type }}</option>   
+                    @endforeach
                 </select>
             </div>
             <div class="form-group col-md-6">

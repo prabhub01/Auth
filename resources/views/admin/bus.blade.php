@@ -36,7 +36,7 @@
         @foreach ($businfo as $bus)
         <tr>
             <td>{{ $bus->id }}</td>
-            <td>{{ $bus->type }}</td>
+            <td>{{ $bus->bus_type->bus_type }}</td>
             <td>{{ $bus->reg_num }}</td>
             <td>{{ $bus->seat_capacity }}</td>
             <td>

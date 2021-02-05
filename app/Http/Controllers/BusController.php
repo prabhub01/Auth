@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Bus;
+use App\Models\BusType;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -37,7 +38,8 @@ class BusController extends Controller
      */
     public function create()
     {
-        return view('admin.createbus');
+        $bustype = BusType::all();
+        return view('admin.createbus', compact('bustype'));
 
         // if (Gate::allows('admin-only', auth()->user())) {  
         // }
@@ -54,7 +56,7 @@ class BusController extends Controller
     {
          // print_r($request->input());
          $request->validate([
-            'type' => 'required',
+            'bus_type_id' => 'required',
             'reg_num' => 'required',
             'seat_capacity' => 'required',
         ]);
@@ -83,8 +85,9 @@ class BusController extends Controller
     public function edit($id)
     {
         $details = Bus::findOrFail($id);
-        $data= Bus::all();
-        return view('admin.editbus', ['details'=>$details, 'data'=>$data]);
+        $data = Bus::all();
+        $type = BusType::all();
+        return view('admin.editbus', ['details'=>$details, 'data'=>$data, 'type'=>$type]);
     }
 
     /**
@@ -98,13 +101,13 @@ class BusController extends Controller
     {
           // dd($request->all()); This is to debug the functions
           $request->validate([
-            'type' => 'required',
+            'bus_type_id' => 'required',
             'reg_num' => 'required',
             'seat_capacity' => 'required',
         ]);
 
         // escape the token field while updating the record
-        $data['type']=$request->type;
+        $data['bus_type_id']=$request->bus_type_id;
         $data['reg_num']=$request->reg_num;
         $data['seat_capacity']=$request->seat_capacity;
 

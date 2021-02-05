@@ -35,9 +35,9 @@
      <div class="row col-xs-12 col-sm-12 col-md-12" style="margin-top:20px;">
             <div class="form-group col-md-6">
                 <strong>Bus Type:</strong>
-                <select name="type" class="form-control">
-                @foreach($data as $bus_name) 
-                <option value="{{ $bus_name->type }}" {{ $bus_name->id == $details->id ? 'selected':''  }}> {{ $bus_name->type }} </option>
+                <select name="bus_type_id" class="form-control">
+                @foreach($type as $b_type) 
+                <option value="{{ $b_type->id }}" {{ $b_type->id == $details->bus_type->id ? 'selected':''  }}> {{ $b_type->bus_type }} </option>
                 @endforeach
                 </select>
 

@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             StateSeeder::class,
             RolesAndPermissionsSeeder::class,
             UserTableSeeder::class,
+            BusTypeSeeder::class,
             
         ]);
     }
