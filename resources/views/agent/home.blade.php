@@ -69,7 +69,7 @@
         @foreach ($data as $bus)
         <tr>
             <td>{{ $bus->id }}</td>
-            <td>{{ $bus->type }}</td>
+            <td>{{ $bus->bus_type->bus_type }}</td>
             <td>{{ $bus->reg_num }}</td>
             <td>{{ $bus->seat_capacity }}</td>
             {{-- <td>
@@ -103,7 +103,7 @@
             <td>{{ $in->id }}</td>
             <td>{{ $in->name }}</td>
             <td>{{ $in->start_from }}</td>
-            <td>{{ $in->district }}</td>
+            <td>{{ $in->district->district_name }}</td>
             <td>Rs {{ $in->price }}</td>
             <td>{{ $in->bus->reg_num }}</td>
             {{-- <td>
