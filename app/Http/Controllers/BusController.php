@@ -22,7 +22,7 @@ class BusController extends Controller
         // auth()->user()->assignRole('customer');
 
 
-        $data=Bus::all();
+        $data=Bus::with('bus_type')->get();
         return view('admin.bus',['businfo'=>$data]);
 
         // if (Gate::allows('admin-only', auth()->user())) {

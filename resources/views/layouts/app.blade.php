@@ -34,11 +34,13 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+
                 @auth
                 <span class="nav-item">
                     Welcome, {{ Auth::user()->name }}
                 </span>
                 @endauth
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -46,15 +48,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                        
                             <!-- @if (Route::has('login'))
+                                
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
@@ -62,7 +63,7 @@
                             
                             <!-- @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}"> {{ __('Register') }} </a>
                                 </li>
                             @endif -->
                         @else
@@ -72,12 +73,12 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('home') }}">  <i class="fa fa-home" aria-hidden="true"></i>&nbsp; {{ __('Home') }}</a>
-                                 </li>
+                                </li>
 
-                                 
                                 <li class="nav-item">
                                    <a class="nav-link" href="{{ route('bus') }}">  <i class="fa fa-bus" aria-hidden="true"></i>&nbsp; {{ __('Bus') }}</a>
                                 </li>
+
                                 <li class="nav-item">
                                  <a class="nav-link" href="{{ route('route') }}">  <i class="fa fa-road" aria-hidden="true"></i>&nbsp;  {{ __('Route') }}</a>
                                 </li>
@@ -106,7 +107,7 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
+                                        
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -129,9 +130,6 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"> </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"> </script>
     
- 
-
-
   <script type="text/javascript">
 // Sweet Alert Message for deleting Bus
   $("body").on("click",".remove-bus",function(){

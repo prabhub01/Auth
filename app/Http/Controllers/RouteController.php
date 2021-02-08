@@ -18,7 +18,7 @@ class RouteController extends Controller
      */
     public function index()
     {
-        $value=Route::with('bus')->get();
+        $value=Route::with('bus','district')->get();
         return view('admin.route',['route'=>$value]);
     }
 
@@ -29,7 +29,6 @@ class RouteController extends Controller
      */
     public function create()
     {
-         
          $data= Bus::get(); 
          $states = State::all();
          return view('admin.createroute', compact('data','states'));
@@ -70,7 +69,7 @@ class RouteController extends Controller
      */
     public function show()
     {
-        $value = Route::with('bus')->get();
+        $value = Route::with('bus','district')->get();
         return view('index', compact('value'));
     }
 

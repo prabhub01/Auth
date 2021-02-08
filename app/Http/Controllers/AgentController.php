@@ -25,10 +25,9 @@ class AgentController extends Controller
 
     public function show()
     {
-        $data=Bus::all();
-        $value=Route::with('bus')->get();
-        // dd($value);
-        $in=Reservation::all();
+        $data=Bus::with('bus_type')->get();
+        $value=Route::with('bus','district')->get();
+        $in=Reservation::with('route')->get();
         return view('agent.home',['route'=>$value, 'data'=>$data, 'info'=>$in]);
     }
 

@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <strong>Assign Role:</strong>
-                    <select name="role[]" class="form-control select-2" multiple="multiple" placeholder="Select One">
+                    <select name="role[]" class="form-control roles" multiple="multiple" placeholder="Select One">
                         <option value="" disabled>---Select Role(s)---</option>
                         @foreach($info as $role_info) 
                             <option value="{{ $role_info->id }}"> {{ $role_info->name }} </option>
