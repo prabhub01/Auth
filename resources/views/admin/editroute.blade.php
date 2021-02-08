@@ -7,7 +7,7 @@
             <h2>Update this Route Details</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('home') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('route') }}"> Back</a>
         </div>
     </div>
 </div>
