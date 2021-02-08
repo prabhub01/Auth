@@ -41,7 +41,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -86,14 +86,13 @@
                                 </li>
 
                                 <li class="nav-item">
-                        
                                     {{-- <a class="nav-link" href="{{ route('logout') }}"> <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;  {{ __('Logout') }}</a> --}}
                                     <form id="" action="{{ route('logout') }}" method="POST" class="nav-link">
                                         @csrf
                                         <input type="submit" value="Logout" style="border: none; border-color: transparent;">
                                     </form>
                                 </li>
-  
+                                
                                 {{-- <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <i class="fa fa-user" aria-hidden="true"></i>   {{ Auth::user()->name }}

@@ -37,7 +37,7 @@
             <td>{{ $details->name }}</td>
             <td>{{ $details->start_from }}</td>
             <td>{{ $details->state->state_name }}</td>
-            <td>{{ $details->district }}</td>
+            <td>{{ $details->district->district_name }}</td>
             <td>{{ $details->price }}</td>
             <td>{{ $details->bus->reg_num }}</td>
          </tr>

@@ -42,7 +42,7 @@
         </tr>
         <tr>
             <th>District</th>
-            <td>{{ $info->route->district }}</td>
+            <td>{{ $info->route->district->district_name }}</td>
         </tr>
         <tr>
             <th>Name</th>
