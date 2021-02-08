@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
+       <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="_base_url" content="{{ url('/') }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
@@ -20,7 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
    <!-- Sweet Alert Message -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 
     {{-- Select2 library --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -81,11 +81,24 @@
                                 </li>
                                 
                                 @endauth
-                                <li class="nav-item dropdown">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">  <i class="fa fa-user" aria-hidden="true"></i>&nbsp;  {{ Auth::user()->name }}</a>
+                                </li>
+
+                                <li class="nav-item">
+                        
+                                    {{-- <a class="nav-link" href="{{ route('logout') }}"> <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;  {{ __('Logout') }}</a> --}}
+                                    <form id="" action="{{ route('logout') }}" method="POST" class="nav-link">
+                                        @csrf
+                                        <input type="submit" value="Logout" style="border: none; border-color: transparent;">
+                                    </form>
+                                </li>
+  
+                                {{-- <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <i class="fa fa-user" aria-hidden="true"></i>   {{ Auth::user()->name }}
                                 </a>
-
+                                
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -97,7 +110,7 @@
                                         @csrf
                                     </form>
                                 </div>
-                            </li>
+                            </li> --}}
                             
                         @endguest
                     </ul>
@@ -109,15 +122,14 @@
             @yield('content')
         </main>
     </div>
-       <!-- Scripts -->
-       <script src="{{ asset('js/app.js') }}" defer></script>
-       
+    
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script>  --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"> </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"> </script>
+    
+ 
 
-    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
-
-  
 
   <script type="text/javascript">
 // Sweet Alert Message for deleting Bus
@@ -257,10 +269,8 @@ $(document).ready(function() {
               $('#district').empty();
             }
         });
-
-        // select2
-        $('.select-2').select2();  
     });
+
 
 //Calculate total price of booking
 function calculate() {
@@ -271,6 +281,16 @@ function calculate() {
 		total.value = myResult;		
 	}
 </script>
+
+<script type="text/javascript">
+    $(function() {
+        $(".roles").select2();
+    });
+    </script>
+
+{{-- <script type="text/javascript">
+    $(".roles").select2();
+</script> --}}
 
 </body>
 </html>

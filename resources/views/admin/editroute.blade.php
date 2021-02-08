@@ -56,9 +56,8 @@
                 <strong>Destination District:</strong>
                 <select class="form-control" name="district_id" id="district">
                     @foreach ($districts as $district_value)
-                            <option value="{{ $district_value->id }}" {{ $district_value->id == $info->district_id ? 'selected':''  }}> {{ $district_value->district_name }} </option>                          
-                         @endforeach
-                    {{-- <option value="{{ $info->district_id }}" {{ $info->id == $info->id ? 'selected':''  }}> {{ $info->district->district_name }} </option> --}}
+                        <option value="{{ $district_value->id }}" {{ $district_value->id == $info->district_id ? 'selected':''  }}> {{ $district_value->district_name }} </option>                          
+                    @endforeach
                 </select>
             </div>
             

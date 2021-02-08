@@ -40,12 +40,20 @@
             
             <div class="form-group col-md-6">
                 <strong>Permissions:</strong>
-                <select name="rolePermission[]" class="form-control select-2" multiple>
+
+                <select name="rolePermission[]" class="form-control roles" multiple>
                 @foreach($permissions as $per) 
                 <option value="{{ $per->id }}" {{ $per->id == in_array($per->id, $rolePermissions) ? 'selected':'' }}> 
-                    {{ $per->name }} </option>
+                    {{ $per->name }} 
+                </option>
                 @endforeach
                 </select>
+
+                {{-- <select class="roles form-control" name="roles[]" multiple="multiple">
+                   <option value="1">Admin</option>
+                   <option value="2">Agent</option>
+                   <option value="3">Customer</option>
+                  </select> --}}
             </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12 text-right">
