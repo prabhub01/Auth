@@ -16,7 +16,7 @@
         <div class="alert alert-success">
             <p>{{ $message }}</p>
         </div>
-    @endif
+@endif
 
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -55,11 +55,10 @@
             <div class="form-group col-md-6">
                 <strong>Destination District:</strong>
                 <select class="form-control" name="district_id" id="district">
-                    @foreach ($district as $district_value)
-                        <option value="{{ $district_value->district_id }}" {{ $info->id == $district_value->id ? 'selected':''  }}> {{ $info->district->district_name }} </option>                          
-                    @endforeach
-                    <option value="{{ $info->district_id }}" {{ $info->id == $info->id ? 'selected':''  }}> {{ $info->district->district_name }} </option>
-
+                    @foreach ($districts as $district_value)
+                            <option value="{{ $district_value->id }}" {{ $info->id == $info->id ? 'selected':''  }}> {{ $district_value->district_name }} </option>                          
+                         @endforeach
+                    {{-- <option value="{{ $info->district_id }}" {{ $info->id == $info->id ? 'selected':''  }}> {{ $info->district->district_name }} </option> --}}
                 </select>
             </div>
             

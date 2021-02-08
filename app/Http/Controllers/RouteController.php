@@ -85,8 +85,9 @@ class RouteController extends Controller
         $info = Route::findOrFail($id);
         $data = Bus::all(); 
         $states = State::all();
-        $dist = District::all();
-        return view('admin.editroute',['info'=>$info, 'data'=>$data, 'state'=>$states, 'district'=>$dist]);
+        $dist = District::where('state_id',$info->state_id)->get();
+        // dd($dist);
+        return view('admin.editroute',['info'=>$info, 'data'=>$data, 'state'=>$states, 'districts'=>$dist]);
     }
 
     /**
