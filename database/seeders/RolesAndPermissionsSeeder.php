@@ -26,26 +26,26 @@ class RolesAndPermissionsSeeder extends Seeder
        // create permissions
        Permission::create(['name' => 'register']);
        Permission::create(['name' => 'login']);
-       Permission::create(['name' => 'manage role']);
-       Permission::create(['name' => 'edit agent']);
-       Permission::create(['name' => 'delete agent']);
-       Permission::create(['name' => 'add bus']);
-       Permission::create(['name' => 'edit bus']);
-       Permission::create(['name' => 'delete bus']);
-       Permission::create(['name' => 'add route']);
-       Permission::create(['name' => 'edit route']);
-       Permission::create(['name' => 'delete route']);
+       Permission::create(['name' => 'manage-user']);
+       Permission::create(['name' => 'manage-role']);
+       Permission::create(['name' => 'edit-agent']);
+       Permission::create(['name' => 'delete-agent']);
+       Permission::create(['name' => 'add-bus']);
+       Permission::create(['name' => 'edit-bus']);
+       Permission::create(['name' => 'delete-bus']);
+       Permission::create(['name' => 'add-route']);
+       Permission::create(['name' => 'edit-route']);
+       Permission::create(['name' => 'delete-route']);
        Permission::create(['name' => 'reservation']);
-       Permission::create(['name' => 'view reservation']);
-       Permission::create(['name' => 'confirm tickets']);
+       Permission::create(['name' => 'view-reservation']);
+       Permission::create(['name' => 'confirm-tickets']);
 
        // creating roles and giving them permissions by chaining
        $role = Role::create(['name' => 'admin'])
-           ->givePermissionTo(['login', 'manage role', 'edit agent', 'delete agent', 
-           'add bus', 'edit bus', 'delete bus', 'add route', 'edit route', 'delete route', 'view reservation']);
+           ->givePermissionTo(['login', 'manage-user', 'manage-role', 'edit-agent', 'delete-agent', 
+           'add-bus', 'edit-bus', 'delete-bus', 'add-route', 'edit-route', 'delete-route', 'view-reservation']);
             
        $role = Role::create(['name' => 'agent'])
-           ->givePermissionTo(['register', 'login', 'edit bus', 'add route', 'edit route', 'view reservation', 'confirm tickets']);
-
+           ->givePermissionTo(['register', 'login', 'edit-bus', 'add-route', 'edit-route', 'view-reservation', 'confirm-tickets']);
         }
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\DB;
 use\App\Models\User;
+use\App\Models\ConfirmBooking;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -18,11 +19,13 @@ class RoleController extends Controller
     public function index()
     {
         $data=User::with('role')->get();
-        // dd($data);
         $info=Role::get();
         $permi=Permission::get();
+        // $tickets=ConfirmBooking::groupBy('route_id')->get();
+        $tickets = DB::table('confirm_bookings')->groupBy('date')->get();
+        // dd($tickets);
 
-        return view('admin.role',['userinfo'=>$data, 'roleinfo'=>$info,'per'=>$permi]);
+        return view('admin.role',['userinfo'=>$data, 'roleinfo'=>$info,'per'=>$permi, 'ticketsinfo'=>$tickets]);
 
 
         // if (Gate::allows('admin-only', auth()->user())) {

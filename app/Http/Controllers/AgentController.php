@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Route;
 use App\Models\Bus;
 use App\Models\Reservation;
+use App\Models\ConfirmBooking;
 use Illuminate\Http\Request;
 
 class AgentController extends Controller
@@ -54,6 +55,17 @@ class AgentController extends Controller
 
     public function confirm(Reservation $reserve, $id)
     {
+        // Storing data to Confirm Booking Table before deleting it 
+    //     $confirm = Reservation::find($id);
+    //     $data = array(
+    //         'cus_name' => $confirm->cus_name,
+    //         'cus_phone' => $confirm->cus_phone,
+    //         'seats' => $confirm->seats,
+    //         'price' => $confirm->price,
+    //         'date' => $confirm->date,
+    //         'route_id' => $confirm->route_id,  
+    //    );
+    //    ConfirmBooking::create($data);
 
         $reserve->destroy($id);
         return redirect()->route('home')

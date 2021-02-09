@@ -43,12 +43,12 @@
             <td>Rs {{ $in->price }}</td>
             <td>{{ $in->bus->reg_num }}</td>
             <td>
-                @role('admin|agent')
+                @can('edit-route')
                     <a class="btn btn-primary" href="{{ route('editroute', $in->id) }}">Edit</a>
-                @endrole
-                @role('admin')
+                @endcan
+                @can('delete-route')
                     <button class="btn btn-danger remove-route" data-id="{{ $in->id }}" data-action="{{ route('deleteroute', $in->id) }}">Delete</button>
-                @endrole
+                @endcan
             </td>
         </tr>
         @endforeach

@@ -65,7 +65,7 @@
                 <strong>Select Bus:</strong>
                 <select name="bus_id" class="form-control">
                 @foreach ($data as $bus)
-                <option value="{{ $bus->id }}" {{ $bus->id == $info->bus->id ? 'selected':''}}> {{ $bus->reg_num }} </option>
+                    <option value="{{ $bus->id }}" {{ $bus->id == $info->bus->id ? 'selected':''}}> {{ $bus->reg_num }} </option>
                 @endforeach
                 </select>
 

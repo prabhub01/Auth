@@ -35,14 +35,14 @@
 
             <td>
                 <form action="{{ route('confirmbooking', $val->id) }}" method="get">
-                    @role('admin|agent')
+                    @can('view-reservation')
                     <a class="btn btn-info" href="{{ route('morebooking', $val->id) }}">View More</a>
-                    @endrole
+                    @endcan
                     @csrf
                     @method('DELETE')
-                    @role('agent')
+                    @can('confirm-tickets')
                     <button type="submit" class="btn btn-success">Confirm</button>
-                    @endrole
+                    @endcan
                 </form>
             </td>
         </tr>
