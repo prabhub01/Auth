@@ -17,11 +17,12 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $data=User::get();
+        $data=User::with('role')->get();
+        // dd($data);
         $info=Role::get();
         $permi=Permission::get();
 
-        return view('admin.role',['userinfo'=>$data, 'roleinfo'=>$info,'per'=>$permi,]);
+        return view('admin.role',['userinfo'=>$data, 'roleinfo'=>$info,'per'=>$permi]);
 
 
         // if (Gate::allows('admin-only', auth()->user())) {
