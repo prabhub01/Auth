@@ -142,7 +142,7 @@
   </div>
 
     <div class="col">
-      {{-- <div class="pull-left">
+      <div class="pull-left">
         <h4>Routes and Confirmed Tickets</h4>
       </div>
 
@@ -150,6 +150,7 @@
         <thead>
           <tr>
             <th scope="col">#</th>
+            <th scope="col">Date</th>
             <th scope="col">Route Name</th>
             <th scope="col">Total Passanger</th>
             <th scope="col">Total Revenue</th>
@@ -158,15 +159,16 @@
         <tbody>
           @foreach ($ticketsinfo as $tickets)
           <tr>
-            <th scope="row">{{ $tickets->id }}</th>
-            <td>test</td>
-            <td> 55</td>
-            <td>Rs 15500</td>
+            <th scope="row">{{$i++}}</th>
+            <td>{{ $tickets->date }}</td>
+            <td>{{ $tickets->route->name }}</td>
+            <td>{{ $tickets->sumSeats }}</td>
+            <td>Rs. {{ $tickets->sumPrice }}</td>
 
           </tr>
           @endforeach
           </tbody>
-      </table> --}}
+      </table>
 
     </div>
   </div>

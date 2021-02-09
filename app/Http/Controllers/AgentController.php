@@ -56,16 +56,16 @@ class AgentController extends Controller
     public function confirm(Reservation $reserve, $id)
     {
         // Storing data to Confirm Booking Table before deleting it 
-    //     $confirm = Reservation::find($id);
-    //     $data = array(
-    //         'cus_name' => $confirm->cus_name,
-    //         'cus_phone' => $confirm->cus_phone,
-    //         'seats' => $confirm->seats,
-    //         'price' => $confirm->price,
-    //         'date' => $confirm->date,
-    //         'route_id' => $confirm->route_id,  
-    //    );
-    //    ConfirmBooking::create($data);
+        $confirm = Reservation::find($id);
+        $data = array(
+            'cus_name' => $confirm->cus_name,
+            'cus_phone' => $confirm->cus_phone,
+            'seats' => $confirm->seats,
+            'price' => $confirm->price,
+            'date' => $confirm->date,
+            'route_id' => $confirm->route_id,  
+       );
+       ConfirmBooking::create($data);
 
         $reserve->destroy($id);
         return redirect()->route('home')

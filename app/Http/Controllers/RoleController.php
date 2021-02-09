@@ -18,14 +18,20 @@ class RoleController extends Controller
      */
     public function index()
     {
+        // defining a variable for SN 
+        $i = 1;
+
         $data=User::with('role')->get();
         $info=Role::get();
         $permi=Permission::get();
-        // $tickets=ConfirmBooking::groupBy('route_id')->get();
-        $tickets = DB::table('confirm_bookings')->groupBy('date')->get();
+        $tickets = ConfirmBooking::with('route')
+                        ->groupBy('date','route_id')
+                        ->selectRaw('*, sum(seats) as sumSeats')
+                        ->selectRaw('sum(price) as sumPrice')
+                        ->get();
         // dd($tickets);
 
-        return view('admin.role',['userinfo'=>$data, 'roleinfo'=>$info,'per'=>$permi, 'ticketsinfo'=>$tickets]);
+        return view('admin.role',['userinfo'=>$data, 'roleinfo'=>$info,'per'=>$permi, 'ticketsinfo'=>$tickets, 'i'=>$i]);
 
 
         // if (Gate::allows('admin-only', auth()->user())) {
