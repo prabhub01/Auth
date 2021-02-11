@@ -4,7 +4,7 @@
 <div class="row" style="margin-top:20px;">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Update this Bus Details</h2>
+            <h2>Update this Bsus Details</h2>
         </div>
         <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('bus') }}"> Back</a>
@@ -42,6 +42,16 @@
                 </select>
 
             </div>
+
+            <div class="form-group col-md-6">
+                <strong>Route:</strong>
+                <select name="route_id" class="form-control">
+                @foreach($route as $route_val) 
+                    <option value="{{ $route_val->id }}" {{ $route_val->id == $details->route->id ? 'selected':''  }}> {{ $route_val->name }} </option>
+                @endforeach
+                </select>
+            </div>
+
             <div class="form-group col-md-6">
                 <strong>Registration Number:</strong>
                 <input type="text" name="reg_num" class="form-control" value="{{ $details->reg_num }}">

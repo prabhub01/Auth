@@ -31,7 +31,6 @@
             <th>From</th>
             <th>To</th>
             <th>Price</th>
-            <th>Bus Number</th>
             <th width="280px">Action</th>
         </tr>
     @foreach($route as $in)
@@ -41,7 +40,6 @@
             <td>{{ $in->start_from }}</td>
             <td>{{ $in->district->district_name }}</td>
             <td>Rs {{ $in->price }}</td>
-            <td>{{ $in->bus->reg_num }}</td>
             <td>
                 @can('edit-route')
                     <a class="btn btn-primary" href="{{ route('editroute', $in->id) }}">Edit</a>

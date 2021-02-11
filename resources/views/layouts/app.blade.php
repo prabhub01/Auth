@@ -76,12 +76,13 @@
                                 </li>
 
                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('route') }}">  <i class="fa fa-road" aria-hidden="true"></i>&nbsp;  {{ __('Route') }}</a>
+                                   </li>
+                                   
+                                <li class="nav-item">
                                    <a class="nav-link" href="{{ route('bus') }}">  <i class="fa fa-bus" aria-hidden="true"></i>&nbsp; {{ __('Bus') }}</a>
                                 </li>
 
-                                <li class="nav-item">
-                                 <a class="nav-link" href="{{ route('route') }}">  <i class="fa fa-road" aria-hidden="true"></i>&nbsp;  {{ __('Route') }}</a>
-                                </li>
                                 <li class="nav-item">
                                  <a class="nav-link" href="{{ route('role') }}">  <i class="fa fa-users" aria-hidden="true"></i>&nbsp;  {{ __('Role') }}</a>
                                 </li>
@@ -239,6 +240,60 @@ $("body").on("click",".remove-user",function(){
     });
 });
 
+// Sweet Alert Message for Confirming Tickets
+$("body").on("click",".confirm-ticket",function(){
+    var current_object = $(this);
+    swal({
+        title: "Are you sure?",
+        text: "You want to Confirm this Booking ?",
+        type: "success",
+        showCancelButton: true,
+        dangerMode: true,
+        cancelButtonClass: '#DD6B55',
+        confirmButtonColor: '#dc3545',
+        confirmButtonText: 'Cofirm!',
+    },function (result) {
+        if (result) {
+            var action = current_object.attr('data-action');
+            var token = jQuery('meta[name="csrf-token"]').attr('content');
+            var id = current_object.attr('data-id');
+
+            $('body').html("<form class='form-inline remove-form' method='get' action='"+action+"'></form>");
+            $('body').find('.remove-form').append('<input name="_method" type="hidden" value="delete">');
+            $('body').find('.remove-form').append('<input name="_token" type="hidden" value="'+token+'">');
+            $('body').find('.remove-form').append('<input name="id" type="hidden" value="'+id+'">');
+            $('body').find('.remove-form').submit();
+        }
+    });
+});
+
+// Sweet Alert Message for Deleting Tickets
+$("body").on("click",".delete-ticket",function(){
+    var current_object = $(this);
+    swal({
+        title: "Are you sure?",
+        text: "You want to Cancle this Booking ?",
+        type: "warning",
+        showCancelButton: true,
+        dangerMode: true,
+        cancelButtonClass: '#DD6B55',
+        confirmButtonColor: '#dc3545',
+        confirmButtonText: 'Cofirm!',
+    },function (result) {
+        if (result) {
+            var action = current_object.attr('data-action');
+            var token = jQuery('meta[name="csrf-token"]').attr('content');
+            var id = current_object.attr('data-id');
+
+            $('body').html("<form class='form-inline remove-form' method='get' action='"+action+"'></form>");
+            $('body').find('.remove-form').append('<input name="_method" type="hidden" value="delete">');
+            $('body').find('.remove-form').append('<input name="_token" type="hidden" value="'+token+'">');
+            $('body').find('.remove-form').append('<input name="id" type="hidden" value="'+id+'">');
+            $('body').find('.remove-form').submit();
+        }
+    });
+});
+
 //Depended Dropdown for State and District
 $(document).ready(function() {
         $('#state').on('change', function() {
@@ -267,7 +322,7 @@ $(document).ready(function() {
             }else{
               $('#district').empty();
             }
-        });
+        });    
     });
 
 
@@ -279,17 +334,18 @@ function calculate() {
 		var myResult = myBox1 * myBox2;
 		total.value = myResult;		
 	}
+
 </script>
+
+
+
+
 
 <script type="text/javascript">
     $(function() {
         $(".roles").select2();
     });
-    </script>
-
-{{-- <script type="text/javascript">
-    $(".roles").select2();
-</script> --}}
+</script>
 
 </body>
 </html>

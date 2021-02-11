@@ -31,6 +31,7 @@
             <th>Bus Type</th>
             <th>Bus Number</th>
             <th>Seat Capacity</th>
+            <th>Route</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($businfo as $bus)
@@ -39,6 +40,7 @@
             <td>{{ $bus->bus_type->bus_type }}</td>
             <td>{{ $bus->reg_num }}</td>
             <td>{{ $bus->seat_capacity }}</td>
+            <td>{{ $bus->route->name }}</td>
             <td>
                 @can('edit-bus')
                     <a class="btn btn-primary" href="{{ route('editbus',$bus->id) }}">Edit</a>

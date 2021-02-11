@@ -20,9 +20,15 @@ class CreateReservationsTable extends Migration
             $table->string('seats');
             $table->string('price');
             $table->string('date');
-            $table->string('bus_id');
-            $table->string('route_id');
+            // $table->string('bus_id');
+            $table->unsignedBigInteger('bus_id');
+            // $table->string('route_id');
+            $table->unsignedBigInteger('route_id');
             $table->timestamps();
+
+            $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');;
+            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');;
+           
         });
     }
 

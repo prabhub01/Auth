@@ -11,15 +11,15 @@ class Route extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name', 'start_from', 'state_id', 'district_id', 'price', 'bus_id'
+        'name', 'start_from', 'state_id', 'district_id', 'price'
     ];
-    
-    function bus(){
-        return $this->belongsTo(Bus::Class,'bus_id');
-    }
 
     function state(){
         return $this->belongsTo(State::Class,'state_id');
+    }
+
+    function bus(){
+        return $this->hasMany(Bus::Class);
     }
 
     function district(){

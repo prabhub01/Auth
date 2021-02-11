@@ -69,6 +69,7 @@ Route::get('/book/{id}', [App\Http\Controllers\CustomerController::class, 'index
 Route::post('/booknow', [App\Http\Controllers\CustomerController::class, 'store'])->name('booknow');
 Route::get('/morebooking/{id}', [App\Http\Controllers\AgentController::class, 'booking'])->name('morebooking');
 Route::get('/confirmbooking/{id}', [App\Http\Controllers\AgentController::class, 'confirm'])->name('confirmbooking');
+Route::get('/deletebooking/{id}', [App\Http\Controllers\AgentController::class, 'destroy'])->name('deletebooking');
 
 
 

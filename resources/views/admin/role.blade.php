@@ -108,7 +108,8 @@
   </div>
 
   <div class="row">
-    <div class="col" style="padding:0 10% 3% 0;">
+    {{-- style="padding:0 20% 3% 0;" --}}
+    <div class="col" style=" margin-right:5%;" >
       <div class="pull-left">
         <h4>Manage Permission</h4>
       </div>
@@ -152,6 +153,7 @@
             <th scope="col">#</th>
             <th scope="col">Date</th>
             <th scope="col">Route Name</th>
+            <th scope="col">Bus Number</th>
             <th scope="col">Total Passanger</th>
             <th scope="col">Total Revenue</th>
           </tr>
@@ -162,6 +164,7 @@
             <th scope="row">{{$i++}}</th>
             <td>{{ $tickets->date }}</td>
             <td>{{ $tickets->route->name }}</td>
+            <td>{{ $tickets->bus->reg_num }}</td>
             <td>{{ $tickets->sumSeats }}</td>
             <td>Rs. {{ $tickets->sumPrice }}</td>
 

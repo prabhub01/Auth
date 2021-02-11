@@ -17,11 +17,19 @@ class CreateConfirmBookingsTable extends Migration
             $table->id();
             $table->string('cus_name');
             $table->string('cus_phone');
-            $table->string('seats');
-            $table->string('price');
+            $table->integer('seats');
+            $table->integer('price');
             $table->string('date');
-            $table->string('route_id');
+            // $table->integer('route_id');
+            $table->unsignedBigInteger('route_id');
+            // $table->integer('bus_id');
+            $table->unsignedBigInteger('bus_id');
             $table->timestamps();
+
+            $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');;
+            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');;
+
+
         });
     }
 

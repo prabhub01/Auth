@@ -38,6 +38,7 @@ class RolesAndPermissionsSeeder extends Seeder
        Permission::create(['name' => 'delete-route']);
        Permission::create(['name' => 'reservation']);
        Permission::create(['name' => 'view-reservation']);
+       Permission::create(['name' => 'delete-reservation']);
        Permission::create(['name' => 'confirm-tickets']);
 
        // creating roles and giving them permissions by chaining
@@ -46,6 +47,6 @@ class RolesAndPermissionsSeeder extends Seeder
            'add-bus', 'edit-bus', 'delete-bus', 'add-route', 'edit-route', 'delete-route', 'view-reservation']);
             
        $role = Role::create(['name' => 'agent'])
-           ->givePermissionTo(['register', 'login', 'edit-bus', 'add-route', 'edit-route', 'view-reservation', 'confirm-tickets']);
+           ->givePermissionTo(['register', 'login', 'edit-bus', 'add-route', 'edit-route', 'view-reservation', 'delete-reservation', 'confirm-tickets']);
         }
     }

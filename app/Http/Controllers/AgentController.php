@@ -48,9 +48,11 @@ class AgentController extends Controller
   
     }
 
-    public function destroy($id)
+    public function destroy(Reservation $reserve, $id)
     {
-       
+        $reserve->destroy($id);
+        return redirect()->route('home')
+                        ->with('success','Ticket cancelled !!');
     }
 
     public function confirm(Reservation $reserve, $id)
@@ -64,6 +66,8 @@ class AgentController extends Controller
             'price' => $confirm->price,
             'date' => $confirm->date,
             'route_id' => $confirm->route_id,  
+            'bus_id' => $confirm->bus_id,  
+
        );
        ConfirmBooking::create($data);
 

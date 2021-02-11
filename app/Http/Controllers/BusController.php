@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Bus;
+use App\Models\Route;
 use App\Models\BusType;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -17,18 +18,8 @@ class BusController extends Controller
      */
     public function index()
     {
-        // auth()->user()->assignRole('admin');
-        // auth()->user()->assignRole('agent');
-        // auth()->user()->assignRole('customer');
-
-
         $data=Bus::with('bus_type')->get();
         return view('admin.bus',['businfo'=>$data]);
-
-        // if (Gate::allows('admin-only', auth()->user())) {
-            
-        // }
-        // return 'You are not an authorized to view this Page!!!!';
     }
 
     /**
@@ -39,7 +30,8 @@ class BusController extends Controller
     public function create()
     {
         $bustype = BusType::all();
-        return view('admin.createbus', compact('bustype'));
+        $route = Route::all();
+        return view('admin.createbus', compact('bustype','route'));
 
         // if (Gate::allows('admin-only', auth()->user())) {  
         // }
@@ -57,9 +49,18 @@ class BusController extends Controller
          // print_r($request->input());
          $request->validate([
             'bus_type_id' => 'required',
+            'route_id' => 'required',
             'reg_num' => 'required',
             'seat_capacity' => 'required',
         ]);
+
+        $count = Bus::where('reg_num', '=' ,$request->reg_num)->count();
+        if($count == 1) {
+            // abort(405, 'Bus already exist');
+            return redirect()->route('bus')
+                        ->with('success','ERROR!! Bus Already Exists.');
+        }
+
         Bus::create($request->all());
         return redirect()->route('bus')
                         ->with('success','New Bus Added successfully.');
@@ -87,7 +88,8 @@ class BusController extends Controller
         $details = Bus::findOrFail($id);
         $data = Bus::all();
         $type = BusType::all();
-        return view('admin.editbus', ['details'=>$details, 'data'=>$data, 'type'=>$type]);
+        $routes = Route::all();
+        return view('admin.editbus', ['details'=>$details, 'data'=>$data, 'type'=>$type, 'route'=>$routes]);
     }
 
     /**
@@ -102,12 +104,14 @@ class BusController extends Controller
           // dd($request->all()); This is to debug the functions
           $request->validate([
             'bus_type_id' => 'required',
+            'route_id' => 'required',
             'reg_num' => 'required',
             'seat_capacity' => 'required',
         ]);
 
         // escape the token field while updating the record
         $data['bus_type_id']=$request->bus_type_id;
+        $data['route_id']=$request->route_id;
         $data['reg_num']=$request->reg_num;
         $data['seat_capacity']=$request->seat_capacity;
 
@@ -124,6 +128,10 @@ class BusController extends Controller
 
     public function destroy(Bus $bus, $id)
     {
+        if ($bus->route()->count()) {
+            return redirect()->route('bus')
+                        ->with('success','Unable to delete Bus, Bus has Route records');
+        }
         $bus->destroy($id);
         return redirect()->route('bus')
                         ->with('success','Bus deleted successfully');

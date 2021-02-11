@@ -38,8 +38,14 @@
             <td>{{ $details->start_from }}</td>
             <td>{{ $details->state->state_name }}</td>
             <td>{{ $details->district->district_name }}</td>
-            <td>{{ $details->price }}</td>
-            <td>{{ $details->bus->reg_num }}</td>
+            <td>Rs. {{ $details->price }}</td>
+            <td>
+                    <select name="bus_id" id="busid" class="form-control">
+                        @foreach ($regBus as $buses)
+                            <option value="{{$buses->id}}">{{$buses->reg_num}}</option>
+                        @endforeach
+                    </select>
+            </td>
          </tr>
      </table>
      <div class="row col-xs-12 col-sm-12 col-md-12" style="margin-top:20px;">
@@ -51,26 +57,33 @@
                 <strong>Your Phone Num:</strong>
                 <input type="number" name="cus_phone" value="{{ old('cus_phone') }}" class="form-control" placeholder="Your Contact Number">
     </div>
+    {{-- <div class="form-group col-md-2">
+        <strong>Total Seats:</strong>
+        <input type="number" id="totalseats" name="available_seats" value="" class="form-control" placeholder="" readonly>
+    </div> --}}
     <div class="form-group col-md-3">
                 <strong>Seats:</strong>
-                <input type="hidden" id="price" class="form-control" value="{{ $details->price }}" placeholder="Enter Price">
                 <input type="number" id="seats" name="seats" oninput="calculate()" value="{{ old('seats') }}" class="form-control" placeholder="Seats Required">
+                <input type="hidden" id="price" class="form-control" value="{{ $details->price }}" placeholder="Enter Price">
+                <input type="hidden" id="" name="route_id" class="form-control" value="{{ $details->id }}">
+
     </div>
     <div class="form-group col-md-3">
                 <strong>Total Price:</strong>
                 <input type="number" id="total" name="price" value="{{ old('price') }}" class="form-control" readonly>
     </div>
-                <!-- hidden field to store values only -->
-                <input type="hidden" name="bus_id" class="form-control" value="{{ $details->bus_id }}">
-                <input type="hidden" name="route_id" class="form-control" value="{{ $details->id }}">
-             
     <div class="form-group col-md-3">
                 <strong>Date:</strong>
                 <input type="date" min="{{ date('Y-m-d') }}" name="date" class="form-control">
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Book Now</button>
-        </div>
+        @if ($nobus->isEmpty())
+            <button type="submit" class="btn btn-primary" disabled='disabled'> Can't Book </button><br>
+            <small>This route is currently closed due to unavailability of bus</small>
+        @else
+            <button type="submit" class="btn btn-primary"> Book Now </button>
+        @endif
+    </div>
     </div>
 </form>
 </div>

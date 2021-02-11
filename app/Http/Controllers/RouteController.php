@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Route;
+use App\Models\RouteBus;
 use App\Models\Bus;
 use App\Models\State;
 use App\Models\District;
@@ -46,17 +48,26 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        // dd($request->bus_id);
         $request->validate([
             'name' => 'required',
             'start_from' => 'required',
             'state_id' => 'required',
             'district_id' => 'required',
-            'bus_id' => 'required',
             'price' => 'required',
         ]);
+        $data = $request->all();
+        Route::create([
+            'name' => $data['name'],
+            'start_from' => $data['start_from'],
+            'state_id' => $data['state_id'],
+            'district_id' => $data['district_id'],
+            'price' => $data['price'],
+        ]);
 
-        Route::create($request->all());
+        // RouteBus::create([
+        //     'bus_id' => $data['bus_id'],
+        // ]);
         return redirect()->route('route')
                         ->with('success','New Route Added successfully.');
     }
@@ -82,7 +93,10 @@ class RouteController extends Controller
     public function edit($id)
     {
         $info = Route::findOrFail($id);
-        $data = Bus::all(); 
+        $data = DB:: table('buses')
+                        ->select('id','reg_num')
+                        ->where('route_id', $id)
+                        ->get(); 
         $states = State::all();
         $dist = District::where('state_id',$info->state_id)->get();
         // dd($dist);
@@ -103,7 +117,7 @@ class RouteController extends Controller
             'start_from' => 'required',
             'state_id' => 'required',
             'district_id' => 'required',
-            'bus_id' => 'required',
+            // 'bus_id' => 'required',
             'price' => 'required',
         ]);
 
@@ -112,7 +126,7 @@ class RouteController extends Controller
         $data['start_from']=$request->start_from;
         $data['state_id']=$request->state_id;
         $data['district_id']=$request->district_id;
-        $data['bus_id']=$request->bus_id;
+        // $data['bus_id']=$request->bus_id;
         $data['price']=$request->price;
 
         Route::whereId($id)->update($data);

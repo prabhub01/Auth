@@ -37,7 +37,6 @@
          </div>
      @endif
  
-    
      <table class="table table-bordered">
      <div class="col-lg-12 margin-tb" style="margin-top:20px;">
      <div class="pull-left">
@@ -50,7 +49,6 @@
             <th>From</th>
             <th>To</th>
             <th>Price</th>
-            <th>Bus Number</th>
             <th width="280px">Action</th>
         </tr>
     @foreach($value as $info)
@@ -60,12 +58,8 @@
             <td>{{ $info->start_from }}</td>
             <td>{{ $info->district->district_name }}</td>
             <td>Rs {{ $info->price }}</td>
-            <td>{{ $info->bus->reg_num }}</td>
-
             <td>
-                <form action="" method="POST">
-                    <a class="btn btn-primary" href="{{ route('book', $info->id) }}">Book a Ticket</a>
-                </form>
+              <a class="btn btn-primary" href="{{ route('book', $info->id) }}">Book a Ticket</a>
             </td>
         </tr>
         @endforeach

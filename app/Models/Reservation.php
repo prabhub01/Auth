@@ -16,6 +16,10 @@ class Reservation extends Model
     function route(){
         return $this->belongsTo(Route::Class, 'route_id');
     }
+
+    function bus(){
+        return $this->belongsTo(Bus::Class, 'bus_id');
+    }
     
 
 }

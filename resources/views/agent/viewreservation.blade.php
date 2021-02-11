@@ -45,6 +45,10 @@
             <td>{{ $info->route->district->district_name }}</td>
         </tr>
         <tr>
+            <th>Bus Number</th>
+            <td>{{ $info->bus->reg_num }}</td>
+        </tr>
+        <tr>
             <th>Name</th>
             <td>{{ $info->cus_name }}</td>
         </tr>

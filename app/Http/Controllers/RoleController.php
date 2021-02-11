@@ -18,7 +18,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        // defining a variable for SN 
+        // defining a variable for SN in table 
         $i = 1;
 
         $data=User::with('role')->get();
@@ -31,7 +31,8 @@ class RoleController extends Controller
                         ->get();
         // dd($tickets);
 
-        return view('admin.role',['userinfo'=>$data, 'roleinfo'=>$info,'per'=>$permi, 'ticketsinfo'=>$tickets, 'i'=>$i]);
+        return view('admin.role',['userinfo'=>$data, 'roleinfo'=>$info,'per'=>$permi, 'ticketsinfo'=>$tickets, 
+                                    'i'=>$i]);
 
 
         // if (Gate::allows('admin-only', auth()->user())) {

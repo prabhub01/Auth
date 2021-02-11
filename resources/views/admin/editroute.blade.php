@@ -62,19 +62,17 @@
             </div>
             
             <div class="form-group col-md-6">
-                <strong>Select Bus:</strong>
-                <select name="bus_id" class="form-control">
-                @foreach ($data as $bus)
-                    <option value="{{ $bus->id }}" {{ $bus->id == $info->bus->id ? 'selected':''}}> {{ $bus->reg_num }} </option>
-                @endforeach
-                </select>
-
-            </div>
-            <div class="form-group col-md-6">
                 <strong>Price:</strong>
                 <input type="number" name="price" class="form-control" value="{{ $info->price }}">
             </div>
 
+            <div class="form-group col-md-6">
+                <strong>Bus in This Route:</strong> 
+                    @foreach ($data as $bus)
+                      <h5><span class="badge badge-secondary">{{ $bus->reg_num }}</span></h5>
+                    @endforeach
+            </div>
+            
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
         </div>

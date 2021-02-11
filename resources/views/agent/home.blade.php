@@ -34,16 +34,17 @@
             <td>{{ $val->cus_name }}</td>
 
             <td>
-                <form action="{{ route('confirmbooking', $val->id) }}" method="get">
                     @can('view-reservation')
                     <a class="btn btn-info" href="{{ route('morebooking', $val->id) }}">View More</a>
                     @endcan
-                    @csrf
-                    @method('DELETE')
-                    @can('confirm-tickets')
-                    <button type="submit" class="btn btn-success">Confirm</button>
+                    @can('delete-reservation')
+                    <button class="btn btn-danger delete-ticket" data-id="{{ $val->id }}"
+                        data-action="{{ route('deletebooking', $val->id) }}"> Delete </button>
                     @endcan
-                </form>
+                    @can('confirm-tickets')
+                    <button class="btn btn-success confirm-ticket" data-id="{{ $val->id }}"
+                        data-action="{{ route('confirmbooking', $val->id) }}"> Confirm </button>
+                    @endcan
             </td>
         </tr>
         @endforeach
@@ -64,7 +65,7 @@
             <th>Bus Type</th>
             <th>Bus Number</th>
             <th>Seat Capacity</th>
-            {{-- <th width="280px">Action</th> --}}
+            <th>Assigned Route</th>
         </tr>
         @foreach ($data as $bus)
         <tr>
@@ -72,10 +73,7 @@
             <td>{{ $bus->bus_type->bus_type }}</td>
             <td>{{ $bus->reg_num }}</td>
             <td>{{ $bus->seat_capacity }}</td>
-            {{-- <td>
-                    <a class="btn btn-primary" href="{{ route('editbus',$bus->id) }}">Edit</a>
-                    <button class="btn btn-danger remove-bus" data-id="{{ $bus->id }}" data-action="{{ route('deletebus', $bus->id) }}">Delete</button>
-            </td> --}}
+            <td>{{ $bus->route->name }}</td>
         </tr>
         @endforeach
     </table>
@@ -95,8 +93,6 @@
             <th>From</th>
             <th>To</th>
             <th>Price</th>
-            <th>Bus Number</th>
-            {{-- <th width="280px">Action</th> --}}
         </tr>
     @foreach($route as $in)
         <tr>
@@ -105,11 +101,6 @@
             <td>{{ $in->start_from }}</td>
             <td>{{ $in->district->district_name }}</td>
             <td>Rs {{ $in->price }}</td>
-            <td>{{ $in->bus->reg_num }}</td>
-            {{-- <td>
-                    <a class="btn btn-primary" href="{{ route('editroute', $in->id) }}">Edit</a>
-                    <button class="btn btn-danger remove-route" data-id="{{ $in->id }}" data-action="{{ route('deleteroute', $in->id) }}">Delete</button>
-            </td> --}}
         </tr>
         @endforeach
     </table>

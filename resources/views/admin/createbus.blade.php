@@ -43,6 +43,15 @@
                 </select>
             </div>
             <div class="form-group col-md-6">
+                <strong>Route:</strong>
+                <select class="form-control" name="route_id">
+                <option value="" disabled selected>--Select One Route--</option>
+                    @foreach ($route as $route_val)
+                        <option value="{{ $route_val->id }}">{{ $route_val->name }}</option>   
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group col-md-6">
                 <strong>Registration Number:</strong>
                 <input type="text" name="reg_num" class="form-control" placeholder="Your Vehicle's Number Plate">
             </div>

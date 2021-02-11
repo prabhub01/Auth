@@ -11,7 +11,8 @@ class CreateRoutesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    
+     public function up()
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->id();
@@ -20,7 +21,7 @@ class CreateRoutesTable extends Migration
             $table->string('state_id');
             $table->string('district_id');
             $table->integer('price');
-            $table->string('bus_id');
+            // $table->string('bus_id');
             $table->timestamps();
         });
     }
