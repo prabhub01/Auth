@@ -108,8 +108,7 @@
   </div>
 
   <div class="row">
-    {{-- style="padding:0 20% 3% 0;" --}}
-    <div class="col" style=" margin-right:5%;" >
+    <div class="col-md-5" >
       <div class="pull-left">
         <h4>Manage Permission</h4>
       </div>
@@ -142,7 +141,7 @@
     </table>
   </div>
 
-    <div class="col">
+    <div class="col-md-7">
       <div class="pull-left">
         <h4>Routes and Confirmed Tickets</h4>
       </div>
@@ -159,25 +158,28 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($ticketsinfo as $tickets)
-          <tr>
-            <th scope="row">{{$i++}}</th>
-            <td>{{ $tickets->date }}</td>
-            <td>{{ $tickets->route->name }}</td>
-            <td>{{ $tickets->bus->reg_num }}</td>
-            <td>{{ $tickets->sumSeats }}</td>
-            <td>Rs. {{ $tickets->sumPrice }}</td>
-
-          </tr>
-          @endforeach
+          @if (!empty($ticketsinfo) && $ticketsinfo->count())
+              @foreach ($ticketsinfo as $tickets)
+                <tr>
+                    <th scope="row">{{$i++}}</th>
+                    <td>{{ $tickets->date }}</td>
+                    <td>{{ $tickets->route->name }}</td>
+                    <td>{{ $tickets->bus->reg_num }}</td>
+                    <td><h5 style="display: inline;">{{ $tickets->sumSeats }}/</h5>
+                        <small style="color: rgb(25, 7, 105);">{{ $tickets->bus->seat_capacity }}</small>
+                    </td>
+                    <td>Rs. {{ $tickets->sumPrice }}</td>
+                </tr>
+              @endforeach
+          @else
+              <tr>
+                <td colspan="6">There are no bookings.</td>
+              </tr>
+          @endif
           </tbody>
       </table>
-
     </div>
   </div>
 </div>
-
-
-
 
 @endsection

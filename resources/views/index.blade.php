@@ -51,18 +51,25 @@
             <th>Price</th>
             <th width="280px">Action</th>
         </tr>
-    @foreach($value as $info)
-        <tr>
-            <td>{{ $info->id }}</td>
-            <td>{{ $info->name }}</td>
-            <td>{{ $info->start_from }}</td>
-            <td>{{ $info->district->district_name }}</td>
-            <td>Rs {{ $info->price }}</td>
-            <td>
-              <a class="btn btn-primary" href="{{ route('book', $info->id) }}">Book a Ticket</a>
-            </td>
-        </tr>
-        @endforeach
+        @if (!empty($value) && $value->count())
+            @foreach($value as $info)
+                <tr>
+                    <td>{{ $info->id }}</td>
+                    <td>{{ $info->name }}</td>
+                    <td>{{ $info->start_from }}</td>
+                    <td>{{ $info->district->district_name }}</td>
+                    <td>Rs {{ $info->price }}</td>
+                    <td>
+                    <a class="btn btn-primary" href="{{ route('book', $info->id) }}">Book a Ticket</a>
+                    </td>
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="6">There are no routes available for booking.</td>
+            </tr>
+        @endif
+    
      </table>
  <hr>
  @endsection

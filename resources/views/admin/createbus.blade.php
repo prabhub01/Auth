@@ -46,9 +46,14 @@
                 <strong>Route:</strong>
                 <select class="form-control" name="route_id">
                 <option value="" disabled selected>--Select One Route--</option>
+                @if (!empty($route) && $route->count())
                     @foreach ($route as $route_val)
-                        <option value="{{ $route_val->id }}">{{ $route_val->name }}</option>   
+                         <option value="{{ $route_val->id }}">{{ $route_val->name }}</option>   
                     @endforeach
+                @else
+                        <option value="">Create a Route First</option>
+                @endif
+                   
                 </select>
             </div>
             <div class="form-group col-md-6">

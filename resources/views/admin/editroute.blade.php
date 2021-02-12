@@ -68,9 +68,14 @@
 
             <div class="form-group col-md-6">
                 <strong>Bus in This Route:</strong> 
+                @if (!empty($data) && $data->count())
                     @foreach ($data as $bus)
                       <h5><span class="badge badge-secondary">{{ $bus->reg_num }}</span></h5>
                     @endforeach
+                @else
+                   <br><span class="badge badge-secondary">Bus not available in this route</span> 
+                @endif
+                   
             </div>
             
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

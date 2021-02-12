@@ -81,7 +81,7 @@ class RouteController extends Controller
     public function show()
     {
         $value = Route::with('bus','district')->get();
-        return view('index', compact('value'));
+        return view('index', ['value'=>$value]);
     }
 
     /**

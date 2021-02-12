@@ -6,6 +6,7 @@ use App\Models\Bus;
 use App\Models\Reservation;
 use App\Models\ConfirmBooking;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class AgentController extends Controller
 {
@@ -27,14 +28,15 @@ class AgentController extends Controller
     public function show()
     {
         $data=Bus::with('bus_type')->get();
-        $value=Route::with('bus','district')->get();
-        $in=Reservation::with('route')->get();
-        return view('agent.home',['route'=>$value, 'data'=>$data, 'info'=>$in]);
+        $route=Route::with('bus','district')->get();
+        $info=ConfirmBooking::with('route')->paginate(3);
+        return view('agent.home',['route'=>$route, 'data'=>$data, 'info'=>$info]);
+        // return view('agent.home', compact('data','route','info'));
     }
 
     public function booking($id)
     {
-        $book = Reservation::findOrFail($id);
+        $book = ConfirmBooking::findOrFail($id);
         return view('agent.viewreservation',['info'=>$book]);
     }
 

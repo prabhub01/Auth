@@ -29,7 +29,7 @@ class CustomerController extends Controller
                         ->where('route_id', $id)
                         ->get();
         // dd($noBus);
-
+            
         return view('customer.reserve', ['bus'=>$bus, 'details'=>$details, 'regBus'=>$bus, 'nobus'=>$noBus]);
     }
 
@@ -51,51 +51,59 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {   
-        // dd($request->all()); 
         $busid['bus_id']=$request->bus_id;
-        $seatcapacity = DB:: table('buses')
-                        ->select('seat_capacity')
-                        ->where('id', $busid)
-                        ->get();   
+        $date['date']=$request->date;
+        $routeid['route_id']=$request->route_id;
 
-        //   $test = DB:: table('confirm_bookings')
-        //                 ->where('bus_id', $request->bus_id)
-        //                 ->groupBy('date','route_id')
-        //                 ->selectRaw('*, sum(seats) as sumSeats')
-        //                 ->get();
-            //    dd($test);
-        //   $bus = Bus::where('id', $request->bus_id)->find();
-        //   if($bus->seat_capacity > $test['sumSeats']){
-        //     return view('index')->with('success','TEST TEST');            
+        $bus = Bus::where('id', $request->bus_id)->first();
 
-        //     dd($bus);     
+        $booked_seats = ConfirmBooking::where('bus_id', $busid)
+                        ->where('date', $date)
+                        ->where('route_id', $routeid)
+                        ->get();
 
+        $totalSeat = 0; 
+                    foreach ($booked_seats as $item) 
+                    {
+                        $totalSeat = $totalSeat + $item->seats;          
+                    }
 
-        // if( DB:: table('confirm_bookings')
-        //                 ->groupBy('date','route_id')
-        //                 ->selectRaw('*, sum(seats) as sumSeats')
-        //                 ->count() > 50){
-        //             return view('index')->with('success','TEST TEST');            
-        // };     
+             if ($totalSeat + $request->seats <= $bus->seat_capacity ) {
+                $request->validate([
+                    'cus_name' => 'required',
+                    'cus_phone' => 'required',
+                    'seats' => 'required|numeric|min:1',
+                    'price' => 'required',
+                    'date' => 'required',
+                    'bus_id' => 'required',
+                    'route_id' => 'required',
         
+                ]);
+        
+                ConfirmBooking::create($request->all());
+                return redirect()->route('index')
+                                ->with('success','You Successfully Booked this Ticket.');
+             }     
+             else{
+                return back()
+                ->with('msg','All seats are booked. Please select another bus or another date');
+             }    
+                        
 
+        // $request->validate([
+        //     'cus_name' => 'required',
+        //     'cus_phone' => 'required',
+        //     'seats' => 'required',
+        //     'price' => 'required',
+        //     'date' => 'required',
+        //     'bus_id' => 'required',
+        //     'route_id' => 'required',
 
+        // ]);
 
-
-        $request->validate([
-            'cus_name' => 'required',
-            'cus_phone' => 'required',
-            'seats' => 'required',
-            'price' => 'required',
-            'date' => 'required',
-            'bus_id' => 'required',
-            'route_id' => 'required',
-
-        ]);
-
-        Reservation::create($request->all());
-        return redirect()->route('index')
-                        ->with('success','You Successfully Booked this Ticket.');
+        // Reservation::create($request->all());
+        // return redirect()->route('index')
+        //                 ->with('success','You Successfully Booked this Ticket.');
     }
     
     /**

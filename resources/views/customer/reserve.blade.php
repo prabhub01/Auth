@@ -11,6 +11,12 @@
         </div> <br/>
     </div>
 </div>
+@if ($message = Session::get('msg'))
+<div class="alert alert-success">
+    <p>{{ $message }}</p>
+</div>
+@endif
+
 @if ($errors->any())
     <div class="alert alert-danger">
         <strong>Whoops!</strong> There were some problems with your input.<br> <br>
@@ -40,18 +46,25 @@
             <td>{{ $details->district->district_name }}</td>
             <td>Rs. {{ $details->price }}</td>
             <td>
-                    <select name="bus_id" id="busid" class="form-control">
-                        @foreach ($regBus as $buses)
-                            <option value="{{$buses->id}}">{{$buses->reg_num}}</option>
-                        @endforeach
-                    </select>
+                    
+                        @if (!empty($regBus) && $regBus->count())
+                        <select name="bus_id" id="busid" class="form-control">
+                            @foreach ($regBus as $buses)
+                                 <option value="{{$buses->id}}">{{$buses->reg_num}}</option>
+                            @endforeach
+                        </select>
+                        @else
+                                <option value="" disabled>Bus not Registered</option>
+                        @endif
+                       
+                   
             </td>
          </tr>
      </table>
      <div class="row col-xs-12 col-sm-12 col-md-12" style="margin-top:20px;">
      <div class="form-group col-md-6">
                 <strong>Your Name:</strong>
-                <input type="text" name="cus_name" value="{{ old('cus_name') }}" class="form-control" placeholder="Your Full Name">
+                <input type="text" name="cus_name" value="{{old('cus_name')}}" class="form-control" placeholder="Your Full Name">
     </div>
     <div class="form-group col-md-6">
                 <strong>Your Phone Num:</strong>

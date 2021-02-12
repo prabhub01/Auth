@@ -25,7 +25,7 @@ class RoleController extends Controller
         $info=Role::get();
         $permi=Permission::get();
         $tickets = ConfirmBooking::with('route')
-                        ->groupBy('date','route_id')
+                        ->groupBy('date','route_id','bus_id')
                         ->selectRaw('*, sum(seats) as sumSeats')
                         ->selectRaw('sum(price) as sumPrice')
                         ->get();

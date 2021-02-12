@@ -33,24 +33,29 @@
             <th>Price</th>
             <th width="280px">Action</th>
         </tr>
-    @foreach($route as $in)
-        <tr>
-            <td>{{ $in->id }}</td>
-            <td>{{ $in->name }}</td>
-            <td>{{ $in->start_from }}</td>
-            <td>{{ $in->district->district_name }}</td>
-            <td>Rs {{ $in->price }}</td>
-            <td>
-                @can('edit-route')
-                    <a class="btn btn-primary" href="{{ route('editroute', $in->id) }}">Edit</a>
-                @endcan
-                @can('delete-route')
-                    <button class="btn btn-danger remove-route" data-id="{{ $in->id }}" data-action="{{ route('deleteroute', $in->id) }}">Delete</button>
-                @endcan
-            </td>
-        </tr>
-        @endforeach
+        @if (!empty($route) && $route->count())
+            @foreach($route as $in)
+            <tr>
+                <td>{{ $in->id }}</td>
+                <td>{{ $in->name }}</td>
+                <td>{{ $in->start_from }}</td>
+                <td>{{ $in->district->district_name }}</td>
+                <td>Rs {{ $in->price }}</td>
+                <td>
+                    @can('edit-route')
+                        <a class="btn btn-primary" href="{{ route('editroute', $in->id) }}">Edit</a>
+                    @endcan
+                    @can('delete-route')
+                        <button class="btn btn-danger remove-route" data-id="{{ $in->id }}" data-action="{{ route('deleteroute', $in->id) }}">Delete</button>
+                    @endcan
+                </td>
+            </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="6">There are no routes registered.</td>
+            </tr>
+        @endif
     </table>
-
 </div>
 @endsection

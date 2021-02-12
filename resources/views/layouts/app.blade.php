@@ -9,15 +9,19 @@
     <meta name="_base_url" content="{{ url('/') }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+     <!-- Styles -->
+     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
+     {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> --}}
+     
+     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
      <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 
    <!-- Sweet Alert Message -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
@@ -137,7 +141,7 @@
     var current_object = $(this);
     swal({
         title: "Are you sure?",
-        text: "You want to remove this Bus ?",
+        text: "You want to remove this Bus? You may loose all the data related to this Bus !",
         type: "error",
         showCancelButton: true,
         dangerMode: true,
@@ -164,7 +168,7 @@ $("body").on("click",".remove-route",function(){
     var current_object = $(this);
     swal({
         title: "Are you sure?",
-        text: "You want to remove this route ?",
+        text: "You want to remove this route ? You may loose all the data related to this Route !",
         type: "error",
         showCancelButton: true,
         dangerMode: true,
@@ -191,7 +195,7 @@ $("body").on("click",".remove-role",function(){
     var current_object = $(this);
     swal({
         title: "Are you sure?",
-        text: "You want to remove this role ?",
+        text: "You want to remove this role ? You maynot perform some task !",
         type: "error",
         showCancelButton: true,
         dangerMode: true,
@@ -218,7 +222,7 @@ $("body").on("click",".remove-user",function(){
     var current_object = $(this);
     swal({
         title: "Are you sure?",
-        text: "You want to remove this User ?",
+        text: "You want to remove this User ? You maynot perform some task !",
         type: "error",
         showCancelButton: true,
         dangerMode: true,
@@ -336,10 +340,6 @@ function calculate() {
 	}
 
 </script>
-
-
-
-
 
 <script type="text/javascript">
     $(function() {

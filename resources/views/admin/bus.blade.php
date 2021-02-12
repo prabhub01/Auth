@@ -34,24 +34,31 @@
             <th>Route</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($businfo as $bus)
-        <tr>
-            <td>{{ $bus->id }}</td>
-            <td>{{ $bus->bus_type->bus_type }}</td>
-            <td>{{ $bus->reg_num }}</td>
-            <td>{{ $bus->seat_capacity }}</td>
-            <td>{{ $bus->route->name }}</td>
-            <td>
-                @can('edit-bus')
-                    <a class="btn btn-primary" href="{{ route('editbus',$bus->id) }}">Edit</a>
-                @endcan
-                
-                @can('delete-bus')
-                    <button class="btn btn-danger remove-bus" data-id="{{ $bus->id }}" data-action="{{ route('deletebus', $bus->id) }}">Delete</button>
-                @endcan
-                </td>
-        </tr>
-        @endforeach
+        @if (!empty($businfo) && $businfo->count())
+            @foreach ($businfo as $bus)
+            <tr>
+                <td>{{ $bus->id }}</td>
+                <td>{{ $bus->bus_type->bus_type }}</td>
+                <td>{{ $bus->reg_num }}</td>
+                <td>{{ $bus->seat_capacity }}</td>
+                <td>{{ $bus->route->name }}</td>
+                <td>
+                    @can('edit-bus')
+                        <a class="btn btn-primary" href="{{ route('editbus',$bus->id) }}">Edit</a>
+                    @endcan
+                    
+                    @can('delete-bus')
+                        <button class="btn btn-danger remove-bus" data-id="{{ $bus->id }}" data-action="{{ route('deletebus', $bus->id) }}">Delete</button>
+                    @endcan
+                    </td>
+            </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="6">There are no buses registered.</td>
+            </tr>
+        @endif
+       
     </table>
 
 </div>
