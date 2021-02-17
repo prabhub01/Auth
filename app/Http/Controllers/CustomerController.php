@@ -77,12 +77,11 @@ class CustomerController extends Controller
                     'date' => 'required',
                     'bus_id' => 'required',
                     'route_id' => 'required',
-        
                 ]);
         
                 ConfirmBooking::create($request->all());
                 return redirect()->route('index')
-                                ->with('success','You Successfully Booked this Ticket.');
+                                           ->with('success','You Successfully Booked this Ticket.');
              }     
              else{
                 return back()

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+@can('view-role-user-page')
 <div class="container">
 
   @if ($message = Session::get('success'))
@@ -98,7 +98,7 @@
               <a href="{{ route('editrole',$role->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a> |           
                 <a class="remove-role" data-id="{{ $role->id }}" data-action="{{ route('deleterole', $role->id) }}">
                 <i class="fa fa-trash"></i></a>
-                @endcan
+              @endcan
               </td>
           </tr>
           @endforeach
@@ -115,7 +115,7 @@
       <div class="pull-right">
          @role('admin')
          <a href="{{ route('addPermission') }}"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp;Create New Permissions</a>
-          @endrole
+         @endrole
       </div>
     <table class="table table-sm">
       <thead>
@@ -181,5 +181,7 @@
     </div>
   </div>
 </div>
-
+@endcan
+<h3 style="text-align: center;"> Unauthorized to view this page. Contact Admin for authorization ! 
+</h3>
 @endsection

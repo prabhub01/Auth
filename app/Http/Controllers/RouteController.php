@@ -9,7 +9,8 @@ use App\Models\RouteBus;
 use App\Models\Bus;
 use App\Models\State;
 use App\Models\District;
-
+use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\UserStoreRequest;
 
 class RouteController extends Controller
 {
@@ -43,32 +44,15 @@ class RouteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-        // dd($request->bus_id);
-        $request->validate([
-            'name' => 'required',
-            'start_from' => 'required',
-            'state_id' => 'required',
-            'district_id' => 'required',
-            'price' => 'required',
-        ]);
-        $data = $request->all();
-        Route::create([
-            'name' => $data['name'],
-            'start_from' => $data['start_from'],
-            'state_id' => $data['state_id'],
-            'district_id' => $data['district_id'],
-            'price' => $data['price'],
-        ]);
+        $validated = $request->all();
 
-        // RouteBus::create([
-        //     'bus_id' => $data['bus_id'],
-        // ]);
-        return redirect()->route('route')
+            Route::create($validated);
+            return redirect('route')
                         ->with('success','New Route Added successfully.');
     }
 

@@ -87,9 +87,11 @@
                                    <a class="nav-link" href="{{ route('bus') }}">  <i class="fa fa-bus" aria-hidden="true"></i>&nbsp; {{ __('Bus') }}</a>
                                 </li>
 
+                                @can('view-role-user-page')
                                 <li class="nav-item">
                                  <a class="nav-link" href="{{ route('role') }}">  <i class="fa fa-users" aria-hidden="true"></i>&nbsp;  {{ __('Role') }}</a>
                                 </li>
+                                @endcan
                                 
                                 @endauth
                                 
