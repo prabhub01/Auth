@@ -68,41 +68,37 @@ class CustomerController extends Controller
                         $totalSeat = $totalSeat + $item->seats;          
                     }
 
-             if ($totalSeat + $request->seats <= $bus->seat_capacity ) {
-                $request->validate([
-                    'cus_name' => 'required',
-                    'cus_phone' => 'required',
-                    'seats' => 'required|numeric|min:1',
-                    'price' => 'required',
-                    'date' => 'required',
-                    'bus_id' => 'required',
-                    'route_id' => 'required',
-                ]);
-        
-                ConfirmBooking::create($request->all());
-                return redirect()->route('index')
-                                           ->with('success','You Successfully Booked this Ticket.');
-             }     
-             else{
-                return back()
-                ->with('msg','All seats are booked. Please select another bus or another date');
-             }    
-                        
-
-        // $request->validate([
-        //     'cus_name' => 'required',
-        //     'cus_phone' => 'required',
-        //     'seats' => 'required',
-        //     'price' => 'required',
-        //     'date' => 'required',
-        //     'bus_id' => 'required',
-        //     'route_id' => 'required',
-
-        // ]);
-
-        // Reservation::create($request->all());
-        // return redirect()->route('index')
-        //                 ->with('success','You Successfully Booked this Ticket.');
+            if ($totalSeat + $request->seats <= $bus->seat_capacity ) {
+                    DB::beginTransaction();                                                                               
+                            $request->validate([
+                                'cus_name' => 'required',
+                                'cus_phone' => 'required',
+                                'seats' => 'required|numeric|min:1',
+                                'price' => 'required',
+                                'date' => 'required',
+                                'bus_id' => 'required',
+                                'route_id' => 'required',
+                            ]);
+                            
+                            $insertA = ConfirmBooking::create($request->all());
+                            $insertB = Reservation::create($request->all());
+                           
+                            if( !$insertA || !$insertB )
+                                {
+                                    DB::rollback();
+                                } else {
+                                    // Else commit the queries
+                                    DB::commit();
+                                    return redirect()->route('index')
+                                                       ->with('success','You Successfully Booked this Ticket.');
+                                }        
+                       }     
+                      else
+                      {
+                      return back()
+                               ->with('msg','All seats are booked. Please select another bus or another date');
+                      }  
+                    
     }
     
     /**
