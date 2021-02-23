@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,13 +48,15 @@ Route::get('/edituser/{id}', [App\Http\Controllers\UserController::class, 'edit'
 Route::post('/updateuser/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('updateuser');
 Route::get('/deleteuser/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('deleteuser');
 
-//CRUD of Bus 
+//CRUD of Bus
 Route::get('/bus', [App\Http\Controllers\BusController::class, 'index'])->name('bus');
 Route::get('/addbus', [App\Http\Controllers\BusController::class, 'create'])->name('addbus');
 Route::post('/addbus-submit', [App\Http\Controllers\BusController::class, 'store'])->name('addbus-submit');
 Route::get('/editbus/{id}', [App\Http\Controllers\BusController::class, 'edit'])->name('editbus');
 Route::post('/updatebus/{id}', [App\Http\Controllers\BusController::class, 'update'])->name('updatebus');
 Route::get('/deletebus/{id}', [App\Http\Controllers\BusController::class, 'destroy'])->name('deletebus');
+Route::patch('/restore-bus/{id}', [App\Http\Controllers\BusController::class, 'restore'])->name('restore-bus');
+
 
 //CRUD of Routes
 Route::get('/route', [App\Http\Controllers\RouteController::class, 'index'])->name('route');
@@ -70,7 +73,10 @@ Route::post('/booknow', [App\Http\Controllers\CustomerController::class, 'store'
 Route::get('/morebooking/{id}', [App\Http\Controllers\AgentController::class, 'booking'])->name('morebooking');
 Route::get('/confirmbooking/{id}', [App\Http\Controllers\AgentController::class, 'confirm'])->name('confirmbooking');
 Route::get('/deletebooking/{id}', [App\Http\Controllers\AgentController::class, 'destroy'])->name('deletebooking');
+Route::post('/subscription', [App\Http\Controllers\AgentController::class, 'store'])->name('subscription');
 
+//Testimonial
+Route::post('/add-testimonial', [App\Http\Controllers\TestimonialController::class, 'store'])->name('add-testimonial');
 
 
 

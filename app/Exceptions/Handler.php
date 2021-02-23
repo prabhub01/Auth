@@ -2,6 +2,8 @@
 
 namespace App\Exceptions;
 
+use App\Observers\DuplicateBusException;
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -37,4 +39,7 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+
 }
+

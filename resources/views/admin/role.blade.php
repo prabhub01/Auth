@@ -54,9 +54,9 @@
               @foreach($users->role as $v)
                  <label class="badge badge-success">{{ $v->name }}</label>
               @endforeach
-              @endif         
+              @endif
             </td>
-            
+
             <td>
               @can('manage-user')
                 <a href="{{ route('edituser',$users->id) }}"> <i class="fa fa-pencil" aria-hidden="true"></i> </a> &nbsp;|&nbsp;
@@ -95,7 +95,7 @@
             <td>{{ $role->name }}</td>
             <td>
               @can('manage-role')
-              <a href="{{ route('editrole',$role->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a> |           
+              <a href="{{ route('editrole',$role->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a> |
                 <a class="remove-role" data-id="{{ $role->id }}" data-action="{{ route('deleterole', $role->id) }}">
                 <i class="fa fa-trash"></i></a>
               @endcan
@@ -132,9 +132,9 @@
           <td>{{ $permission->name }}</td>
           <td>
             @role('admin')
-            <a href="{{ route('editPermission',$permission->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
+            <a href="{{ route('editPermission',$permission->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
             @endrole
-          </td>  
+          </td>
         </tr>
         @endforeach
         </tbody>
@@ -142,46 +142,110 @@
   </div>
 
     <div class="col-md-7">
-      <div class="pull-left">
-        <h4>Routes and Confirmed Tickets</h4>
+      <div>
+        <div class="pull-left">
+          <h4>Routes and Confirmed Tickets</h4>
+        </div>
+
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Date</th>
+              <th scope="col">Route Name</th>
+              <th scope="col">Bus Number</th>
+              <th scope="col">Total Passanger</th>
+              <th scope="col">Total Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (!empty($ticketsinfo) && $ticketsinfo->count())
+                @foreach ($ticketsinfo as $tickets)
+                  <tr>
+                      <th scope="row">{{$i++}}</th>
+                      <td>{{ $tickets->date }}</td>
+                      <td>{{ $tickets->route->name }}</td>
+                      <td>{{ $tickets->bus->reg_num }}</td>
+                      <td><h5 style="display: inline;">{{ $tickets->sumSeats }}/</h5>
+                          <small style="color: rgb(25, 7, 105);">{{ $tickets->bus->seat_capacity }}</small>
+                      </td>
+                      <td>Rs. {{ $tickets->sumPrice }}</td>
+                  </tr>
+                @endforeach
+            @else
+                <tr>
+                  <td colspan="6">There are no bookings.</td>
+                </tr>
+            @endif
+            </tbody>
+        </table>
       </div>
 
-      <table class="table table-sm">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Date</th>
-            <th scope="col">Route Name</th>
-            <th scope="col">Bus Number</th>
-            <th scope="col">Total Passanger</th>
-            <th scope="col">Total Revenue</th>
-          </tr>
-        </thead>
-        <tbody>
-          @if (!empty($ticketsinfo) && $ticketsinfo->count())
-              @foreach ($ticketsinfo as $tickets)
+      <div style="margin-top: 10%;">
+        <div class="pull-left">
+          <h4>Subscribers for NewsLetters</h4>
+        </div>
+
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (!empty($sub) && $sub->count())
+                @foreach ($sub as $subs)
+                  <tr>
+                      <th scope="row">{{$subs->id}}</th>
+                      <td>{{ $subs->email }}</td>
+                  </tr>
+                @endforeach
+            @else
                 <tr>
-                    <th scope="row">{{$i++}}</th>
-                    <td>{{ $tickets->date }}</td>
-                    <td>{{ $tickets->route->name }}</td>
-                    <td>{{ $tickets->bus->reg_num }}</td>
-                    <td><h5 style="display: inline;">{{ $tickets->sumSeats }}/</h5>
-                        <small style="color: rgb(25, 7, 105);">{{ $tickets->bus->seat_capacity }}</small>
-                    </td>
-                    <td>Rs. {{ $tickets->sumPrice }}</td>
+                  <td colspan="6">There are no Subscription.</td>
                 </tr>
-              @endforeach
-          @else
-              <tr>
-                <td colspan="6">There are no bookings.</td>
-              </tr>
-          @endif
-          </tbody>
-      </table>
+            @endif
+            </tbody>
+        </table>
+      </div>
+
+
+
+      <div style="margin-top: 10%;">
+        <div class="pull-left">
+          <h4>Testimonial Upload</h4>
+        </div>
+
+        <div>
+            <form method="POST" action="{{ route('add-testimonial') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="form-rows">
+                  <div class="col">
+                    <input type="text" class="form-control" name="name" placeholder="Your Full Name">
+                  </div> <br>
+                  <div class="col">
+                    <input type="text" class="form-control" name="review" placeholder="Your Review ">
+                  </div> <br>
+                  <div class="col">
+                      <label>Select your image</label>
+                    <input type="file" class="form-control-file" name="image" >
+                  </div> <br>
+                  <div class="col">
+                    <input type="hidden" class="form-control" name="date" value="{{ date('m/d/Y') }}">
+                  </div> <br>
+                </div>
+                <div class="col">
+                    <input type="submit" class="form-control btn-primary" value="Submit">
+                  </div> <br>
+                </div>
+              </form>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
 @endcan
-<h3 style="text-align: center;"> Unauthorized to view this page. Contact Admin for authorization ! 
 </h3>
 @endsection

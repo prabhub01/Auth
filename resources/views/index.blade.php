@@ -32,10 +32,10 @@
      </div>
     
      @if ($message = Session::get('success'))
-         <div class="alert alert-success">
-             <p>{{ $message }}</p>
-         </div>
-     @endif
+  <div class="alert alert-success">
+      <p>{{ $message }}</p>
+  </div>
+  @endif
  
      <table class="table table-bordered">
      <div class="col-lg-12 margin-tb" style="margin-top:20px;">
@@ -69,7 +69,8 @@
                 <td colspan="6">There are no routes available for booking.</td>
             </tr>
         @endif
-    
      </table>
+
  <hr>
+
  @endsection

@@ -2,27 +2,23 @@
 
 namespace App\Providers;
 
+use App\Models\Bus;
+use App\Models\Route;
+use App\Observers\BusObserver;
+use App\Observers\RouteObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
+
     public function register()
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
     public function boot()
     {
-        //
+        Route::observe(RouteObserver::class);
+        Bus::observe(BusObserver::class);
     }
 }

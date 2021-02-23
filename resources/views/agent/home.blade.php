@@ -34,11 +34,11 @@
                 <tr>
                     <td>{{ $val->id}}</td>
                     <td>{{ $val->date }}</td>
-                    <td>{{ $val->route->name }}</td> 
-                    <td>{{ $val->bus->reg_num }}</td>  
+                    <td>{{ $val->route->name }}</td>
+                    <td>{{ $val->bus->reg_num }}</td>
                     <!-- route is the function name of the relationship written in model -->
                     <td>{{ $val->cus_name }}</td>
-                    <td>{{ $val->seats }}</td>  
+                    <td>{{ $val->seats }}</td>
 
                     <td>
                             @can('view-reservation')
@@ -131,6 +131,62 @@
             </tr>
         @endif
     </table>
+    <hr>
+    <section class="home-newsletter" style="margin-top:5%;">
+        <div class="container">
+        <div class="row">
+        <div class="col-sm-12">
+            <div class="single">
+                <h3>Want to Get Notification?</h3>
+                <form id="subsEmail">
+                    @csrf
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Enter Email" id="email">
+                     </div>
+                     <div class="form-group">
+                        <button class="btn btn-success" type="submit" id="submit">Submit</button>
+                     </div>
+
+                 </form>
+            </div>
+        </div>
+        </div>
+        </div>
+        </section>
+
+        <section style="margin-top:5%;">
+            @if (!empty($testimonial) && $testimonial->count())
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Carousel indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol> <!-- Wrapper for carousel items -->
+                <div class="carousel-inner">
+                         @foreach ($testimonial as $item)
+                            @if ($loop->first)
+                            <div class="item carousel-item active">
+                                <div class="img-box"><img src="{{ asset('uploads/'.$item->image) }}" alt="Image Not Found"></div>
+                                <p class="testimonial">{{ $item->review }}</p>
+                                <p class="overview"><b>{{ $item->name }}</b>{{ $item->date }} </p>
+                                <div class="star-rating"> </div>
+                            </div>
+                             @else
+                             <div class="item carousel-item">
+                                <div class="img-box"><img src="{{ asset('uploads/'.$item->image) }}" alt="Image Not Found"></div>
+                                <p class="testimonial">{{ $item->review }}</p>
+                                <p class="overview"><b>{{ $item->name }}</b>{{ $item->date }} </p>
+                                <div class="star-rating"> </div>
+                            </div>
+                             @endif
+                        @endforeach
+                </div> <!-- Carousel controls --> <a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev"> <i class="fa fa-angle-left"></i> </a> <a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next"> <i class="fa fa-angle-right"></i> </a>
+            </div>
+            @else
+            <div>There are no Reviews Yet</div>
+            @endif
+        </section>
 </div>
 
 @endsection

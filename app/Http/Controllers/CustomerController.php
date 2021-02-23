@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Route;
 use App\Models\Bus;
 use App\Models\Reservation;
+use App\Models\Subscription;
 use App\Models\ConfirmBooking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

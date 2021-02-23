@@ -32,13 +32,13 @@ class RouteController extends Controller
      */
     public function create()
     {
-         $data= Bus::get(); 
+         $data= Bus::get();
          $states = State::all();
          return view('admin.createroute', compact('data','states'));
 
         //  if (Gate::allows('admin-only', auth()->user())) {
         // }
-        // return 'You are not an authorized to view this Page!!!!';   
+        // return 'You are not an authorized to view this Page!!!!';
     }
 
     /**
@@ -80,7 +80,7 @@ class RouteController extends Controller
         $data = DB:: table('buses')
                         ->select('id','reg_num')
                         ->where('route_id', $id)
-                        ->get(); 
+                        ->get();
         $states = State::all();
         $dist = District::where('state_id',$info->state_id)->get();
         // dd($dist);
@@ -112,6 +112,8 @@ class RouteController extends Controller
         $data['district_id']=$request->district_id;
         // $data['bus_id']=$request->bus_id;
         $data['price']=$request->price;
+        $data['departure_time']=$request->departure_time;
+
 
         Route::whereId($id)->update($data);
         return redirect()->route('route')
@@ -130,7 +132,7 @@ class RouteController extends Controller
         return redirect()->route('home')
                         ->with('success','Route deleted successfully');
     }
-    
+
     public function findDisWithStateID($id)
     {
         $district = District::where('state_id',$id)->get();

@@ -58,6 +58,15 @@
                 </select>
             </div>
 
+            <div class="form-group col-md-4">
+                <span  id="verified">
+                    <strong>Departure Time:</strong>
+                      <input type="time" name="departure_time" id="departure_time" {{ old('departure_time') }} class="form-control" placeholder="Departure Time"> 
+                </span>
+            <label><input type="checkbox" name="colorCheckbox" value="check" id="myCheck" onclick="myFunction()"> Hide This</label>
+            </div>
+
+
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
         </div>

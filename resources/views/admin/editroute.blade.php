@@ -42,7 +42,7 @@
                 <input type="text" name="start_from" class="form-control" value="{{ $info->start_from }}">
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <strong>Destination Provience:</strong>
                 <select class="form-control" id="state" name="state_id">
                 <option selected disabled>--Select State--</option>
@@ -52,7 +52,7 @@
                 </select>
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <strong>Destination District:</strong>
                 <select class="form-control" name="district_id" id="district">
                     @foreach ($districts as $district_value)
@@ -61,9 +61,17 @@
                 </select>
             </div>
             
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <strong>Price:</strong>
                 <input type="number" name="price" class="form-control" value="{{ $info->price }}">
+            </div>
+
+            <div class="form-group col-md-2">
+                <span  id="verified">
+                    <strong>Departure Time:</strong>
+                      <input type="time" name="departure_time" id="departure_time" class="form-control" value="{{$info->departure_time }}"> 
+                </span>
+            <label><input type="checkbox" name="colorCheckbox" value="check" id="myCheck" onclick="myFunction()"> Hide This</label>
             </div>
 
             <div class="form-group col-md-6">

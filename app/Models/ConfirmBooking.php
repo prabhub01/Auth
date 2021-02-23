@@ -14,10 +14,10 @@ class ConfirmBooking extends Model
     ];
 
     function route(){
-        return $this->belongsTo(Route::Class, 'route_id');
+        return $this->belongsTo(Route::class, 'route_id');
     }
 
     function bus(){
-        return $this->belongsTo(Bus::Class, 'bus_id');
+        return $this->belongsTo(Bus::class, 'bus_id');
     }
 }

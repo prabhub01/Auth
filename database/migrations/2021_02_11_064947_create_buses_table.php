@@ -19,9 +19,11 @@ class CreateBusesTable extends Migration
             $table->unsignedBigInteger('route_id');
             $table->string('reg_num');
             $table->integer('seat_capacity');
+            $table->string('hasWifi')->nullable();
+            $table->softDeletes();
             $table->timestamps();
-       
-            $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');;
+
+            $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
         });
     }
 

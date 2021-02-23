@@ -30,6 +30,7 @@
             <th>Route Name</th>
             <th>From</th>
             <th>To</th>
+            <th>Departure Time</th>
             <th>Price</th>
             <th width="280px">Action</th>
         </tr>
@@ -40,6 +41,11 @@
                 <td>{{ $in->name }}</td>
                 <td>{{ $in->start_from }}</td>
                 <td>{{ $in->district->district_name }}</td>
+                @if (!empty($in->departure_time))
+                    <td>{{ $in->departure_time }}</td>                
+                @else
+                   <td><em> Unknown </em> </td> 
+                @endif
                 <td>Rs {{ $in->price }}</td>
                 <td>
                     @can('edit-route')

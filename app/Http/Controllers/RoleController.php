@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\ConfirmBooking;
+use App\Models\Subscription;
+use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\DB;
-use\App\Models\User;
-use\App\Models\ConfirmBooking;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -18,12 +20,13 @@ class RoleController extends Controller
      */
     public function index()
     {
-        // defining a variable for SN in table 
+        // defining a variable for SN in table
         $i = 1;
 
         $data=User::with('role')->get();
         $info=Role::get();
         $permi=Permission::get();
+        $subs=Subscription::get();
         $tickets = ConfirmBooking::with('route')
                         ->groupBy('date','route_id','bus_id')
                         ->selectRaw('*, sum(seats) as sumSeats')
@@ -31,8 +34,8 @@ class RoleController extends Controller
                         ->get();
         // dd($tickets);
 
-        return view('admin.role',['userinfo'=>$data, 'roleinfo'=>$info,'per'=>$permi, 'ticketsinfo'=>$tickets, 
-                                    'i'=>$i]);
+        return view('admin.role',['userinfo'=>$data, 'roleinfo'=>$info,'per'=>$permi, 'ticketsinfo'=>$tickets,
+                    'sub'=>$subs, 'i'=>$i]);
 
 
         // if (Gate::allows('admin-only', auth()->user())) {
@@ -48,8 +51,8 @@ class RoleController extends Controller
     public function create()
     {
         return view('admin.createrole');
-        
-        // if (Gate::allows('admin-only', auth()->user())) { 
+
+        // if (Gate::allows('admin-only', auth()->user())) {
         // }
         // return 'Unauthorized Access !!!! Login as Admin to get access';
     }
@@ -91,19 +94,19 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-       
+
     }
 
     public function update(Request $request, $id)
     {
-    
+
     }
 
     public function editrole($id)
     {
         //getting permissions related to this role
         $permissions = Permission::get();
-        
+
         $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
         ->pluck('role_has_permissions.permission_id')
         ->all();
@@ -118,15 +121,15 @@ class RoleController extends Controller
             'name' => 'required',
             'rolePermission' => 'required',
         ]);
-        
+
         // escape the token field while updating the record
         $data['name']=$request->name;
         $data['rolePermission']=$request->rolePermission;
-        
+
          // Role::whereId($id)->update($data);
         $role = Role::find($id);
         $role->update($data);
-       
+
         DB::table('role_has_permissions')->where('role_id',$id)->delete();
         $role->givePermissionTo($request->input('rolePermission'));
 
@@ -140,7 +143,7 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    
+
 
     /**
      * Remove the specified resource from storage.

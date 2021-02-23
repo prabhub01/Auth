@@ -19,7 +19,8 @@ class BusController extends Controller
     public function index()
     {
         $data=Bus::with('bus_type')->get();
-        return view('admin.bus',['businfo'=>$data]);
+        $restore = Bus::onlyTrashed()->get();
+        return view('admin.bus',['businfo'=>$data, 'trashed'=>$restore]);
     }
 
     /**
@@ -33,7 +34,7 @@ class BusController extends Controller
         $route = Route::all();
         return view('admin.createbus', compact('bustype','route'));
 
-        // if (Gate::allows('admin-only', auth()->user())) {  
+        // if (Gate::allows('admin-only', auth()->user())) {
         // }
         // return 'You are not an authorized to view this Page!!!!';
     }
@@ -56,10 +57,10 @@ class BusController extends Controller
 
         $count = Bus::where('reg_num', '=' ,$request->reg_num)->count();
         if($count == 1) {
-            // abort(405, 'Bus already exist');
             return redirect()->route('bus')
                         ->with('success','ERROR!! Bus Already Exists.');
         }
+
 
         Bus::create($request->all());
         return redirect()->route('bus')
@@ -74,7 +75,7 @@ class BusController extends Controller
      */
     public function show($id)
     {
-      
+
     }
 
     /**
@@ -99,6 +100,7 @@ class BusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
           // dd($request->all()); This is to debug the functions
@@ -128,13 +130,24 @@ class BusController extends Controller
 
     public function destroy(Bus $bus, $id)
     {
-        if ($bus->route()->count()) {
-            return redirect()->route('bus')
-                        ->with('success','Unable to delete Bus, Bus has Route records');
-        }
         $bus->destroy($id);
         return redirect()->route('bus')
                         ->with('success','Bus deleted successfully');
     }
 
+    public function restore($id)
+    {
+        $bus = Bus::onlyTrashed()->find($id);
+        // dd($bus);
+        if (!is_null($bus)) {
+
+            $bus->restore();
+            return redirect()->route('bus')
+                              ->with('success','Bus restored successfully');
+        } else {
+
+            return redirect()->route('bus')
+            ->with('success',' Something went wrong !! Unable to restore Bus !');
+        }
+    }
 }

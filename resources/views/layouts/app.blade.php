@@ -1,4 +1,4 @@
-<!doctype html>
+ <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -13,13 +13,13 @@
      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
      {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
      {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> --}}
-     
-     
+
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-     <!-- Font Awesome -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -28,6 +28,19 @@
 
     {{-- Select2 library --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <style type="text/css">
+        .box {
+            color: black;
+            display: none;
+            margin-top: 20px;
+        }
+
+        .check {
+            background: #ffffff;
+        }
+    </style>
 
 </head>
 
@@ -59,12 +72,12 @@
                         <!-- Authentication Links -->
                         @guest
                             <!-- @if (Route::has('login'))
-                                
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif -->
-                            
+
                             <!-- @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}"> {{ __('Register') }} </a>
@@ -82,7 +95,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('route') }}">  <i class="fa fa-road" aria-hidden="true"></i>&nbsp;  {{ __('Route') }}</a>
                                    </li>
-                                   
+
                                 <li class="nav-item">
                                    <a class="nav-link" href="{{ route('bus') }}">  <i class="fa fa-bus" aria-hidden="true"></i>&nbsp; {{ __('Bus') }}</a>
                                 </li>
@@ -92,9 +105,9 @@
                                  <a class="nav-link" href="{{ route('role') }}">  <i class="fa fa-users" aria-hidden="true"></i>&nbsp;  {{ __('Role') }}</a>
                                 </li>
                                 @endcan
-                                
+
                                 @endauth
-                                
+
                                 <li class="nav-item">
                                     {{-- <a class="nav-link" href="{{ route('logout') }}"> <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;  {{ __('Logout') }}</a> --}}
                                     <form id="" action="{{ route('logout') }}" method="POST" class="nav-link">
@@ -102,25 +115,25 @@
                                         <input type="submit" value="Logout" style="border: none; border-color: transparent;">
                                     </form>
                                 </li>
-                                
+
                                 {{-- <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <i class="fa fa-user" aria-hidden="true"></i>   {{ Auth::user()->name }}
                                 </a>
-                                
+
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                        
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
                             </li> --}}
-                            
+
                         @endguest
                     </ul>
                 </div>
@@ -131,12 +144,13 @@
             @yield('content')
         </main>
     </div>
-    
+
     {{-- <script src="{{ asset('js/app.js') }}" defer></script>  --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"> </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"> </script>
-    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+
   <script type="text/javascript">
 // Sweet Alert Message for deleting Bus
   $("body").on("click",".remove-bus",function(){
@@ -316,7 +330,7 @@ $(document).ready(function() {
                       if(data){
                         $('#district').empty();
                         $('#district').focus;
-                        $('#district').append('<option value="">-- Select District --</option>'); 
+                        $('#district').append('<option value="">-- Select District --</option>');
                         $.each(data, function(key, value){
                         $('select[name="district_id"]').append('<option value="'+ value.id +'">' + value.district_name+ '</option>');
                     });
@@ -328,17 +342,17 @@ $(document).ready(function() {
             }else{
               $('#district').empty();
             }
-        });    
+        });
     });
 
 
 //Calculate total price of booking
 function calculate() {
-		var myBox1 = document.getElementById('price').value;	
+		var myBox1 = document.getElementById('price').value;
 		var myBox2 = document.getElementById('seats').value;
-		var result = document.getElementById('total');	
+		var result = document.getElementById('total');
 		var myResult = myBox1 * myBox2;
-		total.value = myResult;		
+		total.value = myResult;
 	}
 
 </script>
@@ -349,5 +363,48 @@ function calculate() {
     });
 </script>
 
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('#subsEmail').on('submit',function(event){
+        event.preventDefault();
+        let email = $('#email').val();
+
+        if (email == '') {
+            alert("Email can't be Empty");
+        }
+        else
+        {
+         $.ajax({
+          url:"{{ url('/subscription') }}",
+          type:"POST",
+          data:{
+            email:email,
+            _token:"{{ csrf_token() }}",
+          },
+          success:function(response){
+            console.log(response);
+            alert(response.success);
+          },
+         });
+        }
+        });
+      </script>
+
+    <script type="text/javascript">
+      function myFunction() {
+              var checkBox = document.getElementById("myCheck");
+              var text = document.getElementById("verified");
+              if (checkBox.checked == true){
+                text.style.display = "none";
+                document.getElementById('departure_time').value = "";
+              } else {
+                 text.style.display = "block";
+              }
+            }
+    </script>
 </body>
 </html>
